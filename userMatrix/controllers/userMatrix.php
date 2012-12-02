@@ -322,7 +322,7 @@ class UserMatrix extends MY_Controller
         }
 
         if(!empty($query)){
-            $filter .= " AND (b.description LIKE '%$query%')";
+            $filter .= " AND (b.description LIKE '%$query%' OR c.description LIKE '%$query%')";
         }
         //$filter = array("module.is_public"=>0, "module_group_access.group_id"=>$id);
         //$filter = array("is_delete"=>0);
@@ -331,7 +331,6 @@ class UserMatrix extends MY_Controller
 
         $records = array();
         $records = $this->lithefire->getAllRecords($db, $table, $fields, $start, $limit, $sort, $filter, $group, $having);
-
 
 
         $temp = array();
@@ -425,7 +424,7 @@ class UserMatrix extends MY_Controller
         }
 
         if(!empty($query)){
-            $filter .= "a.description LIKE '%$query%'";
+            $filter .= " AND (a.description LIKE '%$query%' OR b.description LIKE '%$query%')";
         }
 
         //$filter = array("is_delete"=>0);

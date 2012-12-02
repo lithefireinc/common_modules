@@ -55,7 +55,40 @@
  				        displayMsg: 'Displaying Results {0} - {1} of {2}',
  				        emptyMsg: "No Data Found."
  				    }),
- 				tbar: [
+ 				tbar: [new Ext.form.ComboBox({
+                    fieldLabel: 'Search',
+                    hiddenName:'searchby-form',
+                    id: 'searchby',
+					//store: Objstore,
+                    typeAhead: true,
+                    triggerAction: 'all',
+                    emptyText:'Search By...',
+                    selectOnFocus:true,
+
+                    store: new Ext.data.SimpleStore({
+				         id:0
+				        ,fields:
+				            [
+				             'myId',   //numeric value is the key
+				             'myText' //the text value is the value
+
+				            ]
+
+
+				         , data: [['id', 'ID'], ['sd', 'Short Description'], ['ld', 'Long Description']]
+
+			        }),
+				    valueField:'myId',
+				    displayField:'myText',
+				    mode:'local',
+                    width:100,
+                    hidden: true
+
+                }),
+                {
+					xtype:'tbtext',
+					text:'Search:'
+				},'   ', new Ext.app.SearchField({ store: Objstore, width:250}),
  					    {
  					     	xtype: 'tbfill'
  					 	},{
@@ -309,12 +342,7 @@
                 		    	var response = Ext.decode(responseObj.responseText);
 						if(response.success == true)
 						{
-							Ext.Msg.show({
-								title: 'Status',
-								msg: "Record deleted successfully",
-								icon: Ext.Msg.INFO,
-								buttons: Ext.Msg.OK
-							});
+							
 							usermatrix.app.Grid.getStore().load({params:{start:0, limit: 25}});
 
 							return;
@@ -400,7 +428,10 @@
  				        displayMsg: 'Displaying Results {0} - {1} of {2}',
  				        emptyMsg: "No Data Found."
  				    }),
- 				tbar: [
+ 				tbar: [{
+					xtype:'tbtext',
+					text:'Search:'
+				},'   ', new Ext.app.SearchField({ store: Userstore, width:150}),
  					    {
  					     	xtype: 'tbfill'
  					 	},{
@@ -606,12 +637,7 @@
 	                		    	var response = Ext.decode(responseObj.responseText);
 							if(response.success == true)
 							{
-								Ext.Msg.show({
-									title: 'Status',
-									msg: "Record deleted successfully",
-									icon: Ext.Msg.INFO,
-									buttons: Ext.Msg.OK
-								});
+							
 								usermatrix.app.UserGrid.getStore().load({params:{start:0, limit: 25}});
 
 								return;
@@ -827,7 +853,10 @@
 		 				        displayMsg: 'Displaying Results {0} - {1} of {2}',
 		 				        emptyMsg: "No Data Found."
 		 				    }),
-		 				tbar: [
+		 				tbar: [{
+					xtype:'tbtext',
+					text:'Search:'
+				},'   ', new Ext.app.SearchField({ store: moduleStore, width:150}),
 		 					    {
 		 					     	xtype: 'tbfill'
 		 					 	},{
@@ -971,12 +1000,7 @@
 			                		    	var response = Ext.decode(responseObj.responseText);
 									if(response.success == true)
 									{
-										Ext.Msg.show({
-											title: 'Status',
-											msg: "Record deleted successfully",
-											icon: Ext.Msg.INFO,
-											buttons: Ext.Msg.OK
-										});
+									
 										usermatrix.app.moduleGrid.getStore().load({params:{start:0, limit: 25}});
 
 										return;
@@ -1080,7 +1104,7 @@
 
 		        		loadMask: true,
 
-					//tbar: [ 'Search: ', ' ', new Ext.app.SearchField({ store: store, width:320}) ],
+					tbar: [ 'Search: ', ' ', new Ext.app.SearchField({ store: store, width:150}) ],
 
 					bbar: new Ext.PagingToolbar({
 
