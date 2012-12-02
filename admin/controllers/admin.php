@@ -2647,6 +2647,61 @@ $html .= "</table>";
         $data['totalCount'] = $this->lithefire->countFilteredRows($db, $table, $filter, "");
         die(json_encode($data));*/
     }
+    
+    function user_log(){
+	$data['title'] = 'User Log | SWP';
+        $data['userId'] = $this->session->userData('userId');
+        $data['userName'] = $this->session->userData('userName');
+
+        $this->layout->view('admin/user_log_view', $data);
+    }
+    
+    function getUserLog(){
+        
+        $db = "default";
+
+        $start=$this->input->post('start');
+        $limit=$this->input->post('limit');
+        
+        $sort = $this->input->post('sort');
+        $dir = $this->input->post('dir');
+        $querystring = $this->input->post('query');
+        $filter = "";
+        $group = "";
+        $logdb = $this->config->item("log_db");
+        if(empty($sort) && empty($dir)){
+            $sort = "login_time DESC";
+        }else{
+            $sort = "$sort $dir";
+        }
+
+        $fr_db = $this->config->item("fr_db");
+
+        $records = array();
+        $table = "$logdb.USERLOG";
+		
+        $fields = array("username", "login_time", "logout_time");
+        
+        if(!empty($querystring))
+            $filter = "(username LIKE '%$querystring%' OR login_time LIKE '%$querystring%')";
+
+        $records = $this->lithefire->getAllRecords($db, $table, $fields, $start, $limit, $sort, $filter, $group);
+
+
+        $temp = array();
+        $total = 0;
+        if($records){
+        foreach($records as $row):
+            $temp[] = $row;
+            $total++;
+
+        endforeach;
+        }
+        $data['data'] = $temp;
+        $data['success'] = true;
+        $data['totalCount'] = $this->lithefire->countFilteredRows($db, $table, $filter, "");
+        die(json_encode($data));
+    }
 	
 	
 }
