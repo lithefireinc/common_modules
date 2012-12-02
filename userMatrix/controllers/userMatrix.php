@@ -19,7 +19,7 @@ class UserMatrix extends MY_Controller
 
         //$this->load->view('header_view', $data);
         //$this->load->view('menu_view', $data);
-        $this->layout->view('usermatrix/userMatrix_view', $data);
+        $this->layout->view('userMatrix/userMatrix_view', $data);
         //$this->load->view('login_view');
         //$this->load->view('footer_view', $data);
     }
@@ -476,7 +476,7 @@ class UserMatrix extends MY_Controller
         $data['userName'] = $this->session->userdata('userName');
 
      
-        $this->layout->view('usermatrix/user_administration_view', $data);
+        $this->layout->view('userMatrix/user_administration_view', $data);
     
     }
 
