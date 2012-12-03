@@ -35,7 +35,7 @@
 
  			var grid = new Ext.grid.GridPanel({
  				id: 'user_loggrid',
- 				height: 300,
+ 				height: 420,
  				width: '100%',
  				border: true,
  				ds: Objstore,
@@ -122,25 +122,105 @@
 
  			user_log.app.Grid = grid;
  			user_log.app.Grid.getStore().load({params:{start: 0, limit: 25}});
+                        
+               var totalStore = new Ext.data.Store({
+ 						proxy: new Ext.data.HttpProxy({
+ 							url: "<?=site_url("admin/getTotalUserLogin")?>",
+ 							method: "POST"
+ 							}),
+ 						reader: new Ext.data.JsonReader({
+ 								root: "data",
+ 								id: "id",
+ 								totalProperty: "totalCount",
+ 								fields: [
+ 											{ name: "username"},
+ 											{ name: "total_login_time"}
+ 										]
+ 						}),
+ 						remoteSort: true,
+ 						baseParams: {start: 0, limit: 25}
+ 					});
 
- 			var _window = new Ext.Panel({
- 		        title: 'Country',
- 		        width: '100%',
- 		        height:420,
- 		        renderTo: 'mainBody',
- 		        draggable: false,
- 		        layout: 'fit',
- 		        items: [user_log.app.Grid],
- 		        resizable: false
 
- 			    /*listeners : {
- 				    	  close: function(p){
- 					    	  window.location="../"
- 					      }
- 			       	} */
- 	        });
+ 			var total_grid = new Ext.grid.GridPanel({
+ 				id: 'total_grid',
+ 				height: 420,
+ 				width: '100%',
+ 				border: true,
+ 				ds: totalStore,
+ 				cm:  new Ext.grid.ColumnModel(
+ 						[
+                                                    { header: "User Name", width: 200, sortable: true, dataIndex: "username" },
+ 						  { header: "Total Login Time", width: 150, sortable: true, dataIndex: "total_login_time" }
+ 						]
+ 				),
+ 				sm: new Ext.grid.RowSelectionModel({singleSelect:true}),
+ 	        	loadMask: true,
+ 	        	bbar:
+ 	        		new Ext.PagingToolbar({
+ 		        		autoShow: true,
+ 				        pageSize: 25,
+ 				        store: totalStore,
+ 				        displayInfo: true,
+ 				        displayMsg: 'Displaying Results {0} - {1} of {2}',
+ 				        emptyMsg: "No Data Found."
+ 				    }),
+ 				tbar: [new Ext.form.ComboBox({
+                    fieldLabel: 'Search',
+                    hiddenName:'searchby-form',
+                    id: 'searchby',
+					//store: Objstore,
+                    typeAhead: true,
+                    triggerAction: 'all',
+                    emptyText:'Search By...',
+                    selectOnFocus:true,
 
- 	        _window.render();
+                    store: new Ext.data.SimpleStore({
+				         id:0
+				        ,fields:
+				            [
+				             'myId',   //numeric value is the key
+				             'myText' //the text value is the value
+
+				            ]
+
+
+				         , data: [['id', 'ID'], ['sd', 'Short Description'], ['ld', 'Long Description']]
+
+			        }),
+				    valueField:'myId',
+				    displayField:'myText',
+				    mode:'local',
+                    width:100,
+                    hidden: true
+
+                }), {
+					xtype:'tbtext',
+					text:'Search:'
+				},'   ', new Ext.app.SearchField({ store: totalStore, width:250}),
+ 					    {
+ 					     	xtype: 'tbfill'
+ 					 	}
+ 	    			 ]
+ 	    	});
+
+ 			user_log.app.totalGrid = total_grid;
+ 			user_log.app.totalGrid.getStore().load({params:{start: 0, limit: 25}});
+
+
+ 	       var tabs = new Ext.TabPanel({
+		        renderTo: 'mainBody',
+		        width:'100%',
+		        activeTab: 0,
+		        frame:true,
+		        height: 450,
+                       // layout: 'fit',
+		        //defaults:{autoHeight: true},
+		        items:[
+		            {title: 'User Logs', items: user_log.app.Grid},
+		            {title: 'Total Time', items: user_log.app.totalGrid}
+		        ]
+		    }).render();
 
 
  		},

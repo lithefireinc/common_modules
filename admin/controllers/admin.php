@@ -2702,6 +2702,72 @@ $html .= "</table>";
         $data['totalCount'] = $this->lithefire->countFilteredRows($db, $table, $filter, "");
         die(json_encode($data));
     }
+    
+    function getTotalUserLogin(){
+        
+        $db = "default";
+
+        $start=$this->input->post('start');
+        $limit=$this->input->post('limit');
+        
+        $sort = $this->input->post('sort');
+        $dir = $this->input->post('dir');
+        $querystring = $this->input->post('query');
+        $filter = "";
+        $group = "";
+        $logdb = $this->config->item("log_db");
+        if(empty($sort) && empty($dir)){
+            $sort = "login_time DESC";
+        }else{
+            $sort = "$sort $dir";
+        }
+
+        $fr_db = $this->config->item("fr_db");
+
+        $records = array();
+        $table = "$logdb.USERLOG";
+		
+        $fields = array("id", "username", "login_time", "logout_time");
+        
+        if(!empty($querystring))
+            $filter = "(username LIKE '%$querystring%' OR login_time LIKE '%$querystring%')";
+
+        $records = $this->lithefire->getAllRecords($db, $table, $fields, $start, $limit, $sort, $filter, $group);
+
+
+        $temp = array();
+        $total_array = array();
+        
+        $total = 0;
+        if($records){
+        foreach($records as $row):
+            //$temp[] = $row;
+            //$total++;
+            if(empty($row['logout_time'])){
+                $row['logout_time'] = date("Y-m-d H:i:s", strtotime ($row['login_time']."+5 minutes"));
+              //  die("abcde ".gmdate("H:i:s", ));
+            }
+            
+            if(empty($total_array[$row['username']]))
+            $total_array[$row['username']] = (strtotime($row['logout_time'])-strtotime($row['login_time'])) ;
+            else
+            $total_array[$row['username']] += (strtotime($row['logout_time'])-strtotime($row['login_time'])) ;
+
+        endforeach;
+        }
+        //die(print_r($total_array));
+        foreach($total_array as $k => $val):
+           
+            $temp[] = array("username"=>$k, "total_login_time"=>  gmdate("H:i:s", $val));
+        
+        endforeach;
+        
+        
+        $data['data'] = $temp;
+        $data['success'] = true;
+        $data['totalCount'] = $this->lithefire->countFilteredRows($db, $table, $filter, "");
+        die(json_encode($data));
+    }
 	
 	
 }
