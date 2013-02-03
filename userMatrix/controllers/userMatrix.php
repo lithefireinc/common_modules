@@ -727,6 +727,96 @@ class UserMatrix extends MY_Controller
         die(json_encode($data));
         
     }
+	
+	public function generateScaffolding($value='')
+	{
+		$fp = fopen(APPPATH."controllers/$value.php", "w");
+		fwrite($fp, "<?php\nclass $value extends MY_Controller{\n");
+		$columns = $this->lithefire->fetchAllRecords("default", "information_schema.columns", "table_name = '$value'", array("COLUMN_NAME", "TABLE_SCHEMA"));
+		$ctr = count($columns);
+		$db = $this->lithefire->getFieldWhere("fr", "database_mapping", "mysql_name = '".$columns[0]['TABLE_SCHEMA']."'", "CI_name");
+		$pk = $this->lithefire->getFieldWhere("default", "information_schema.columns", "COLUMN_KEY = 'PRI' AND table_name = '$value'", "COLUMN_NAME");
+		
+		fwrite($fp, "
+		function $value(){
+			parent::__construct();
+		}\n\n");
+		
+		
+		fwrite($fp, "
+		public function index()
+		{
+			\$data['title'] = \"$value | E-Online\";
+			\$data['userId'] = \$this->session->userData('userId');
+			\$data['userName'] = \$this->session->userData('userName');
+			\$this->layout->view('".$value."/".$value."_view', \$data);
+		}\n");
+		
+		fwrite($fp, "
+		function get$value(){
+        
+	        \$start=\$this->input->post('start');
+	        \$limit=\$this->input->post('limit');
+	
+	        \$sort = \$this->input->post('sort');
+	        \$dir = \$this->input->post('dir');
+	        \$query = \$this->input->post('query');
+	
+	        \$records = array();
+	        \$table = \"$value\";
+	        \$fields = array(");
+	    foreach($columns as $row):
+			fwrite($fp, "\"".$row['COLUMN_NAME']."\",");
+		endforeach;
+		
+	    fwrite($fp, ");
+	        \$db = '$db';
+	        \$filter = \"\";
+	        \$group = \"\";
+			if(empty(\$sort) && empty(\$dir)){
+	            \$sort = \"$pk\";
+	        }else{
+	        	\$sort = \"\$sort \$dir\";
+	        }
+			
+			if(!empty(\$query)){\n \t\t\t\t\"(");
+	            //\$filter = \"(QUCLIDNO LIKE '%\$query%' OR QUCLCODE LIKE '%\$query%' OR description LIKE '%\$query%')\";""
+	            $i = 0;
+	            foreach($columns as $row):
+					fwrite($fp, $row['COLUMN_NAME']." LIKE '%\$query%'");
+					if(++$i != $ctr){
+						fwrite($fp, " OR ");
+					}
+				endforeach;
+	            
+	    fwrite($fp,")\";
+	    	}
+			 
+			
+			
+			\$records = \$this->lithefire->getAllRecords(\$db, \$table, \$fields, \$start, \$limit, \$sort, \$filter, \$group);
+	
+	        \$data['totalCount'] = \$this->lithefire->countFilteredRows(\$db, \$table, \$filter, \$group);
+	
+	        \$temp = array();
+	        \$total = 0;
+	        if(\$records){
+	        foreach(\$records as \$row):
+	
+	            \$temp[] = \$row;
+	            \$total++;
+	
+	        endforeach;
+	        }
+	        \$data['data'] = \$temp;
+	        \$data['success'] = true;
+	        die(json_encode(\$data));
+	    }
+		");
+
+		fwrite($fp, "\n}");
+		fclose($fp);
+	}
 }
 
 ?>
