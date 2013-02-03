@@ -1148,7 +1148,7 @@
 
 			var addItemListWin = new Ext.Window({
 
-					title: 'Add Module Acess',
+					title: 'Add Module Access',
 
 			        	width: 550,
 

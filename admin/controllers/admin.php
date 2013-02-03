@@ -2770,4 +2770,320 @@ $html .= "</table>";
     }
 	
 	
+	function announcements(){
+		$data['title'] = 'Announcements | SWP';
+        $data['userId'] = $this->session->userData('userId');
+        $data['userName'] = $this->session->userData('userName');
+
+        $this->layout->view('admin/announcements_view', $data);
+    }
+	
+	function getAnnouncements(){
+        
+        $db = "default";
+
+        $start=$this->input->post('start');
+        $limit=$this->input->post('limit');
+        
+        $sort = $this->input->post('sort');
+        $dir = $this->input->post('dir');
+        $querystring = $this->input->post('query');
+        $filter = "";
+        $group = "";
+        $logdb = $this->config->item("log_db");
+        if(empty($sort) && empty($dir)){
+            $sort = "id ASC";
+        }else{
+            $sort = "$sort $dir";
+        }
+
+        $fr_db = $this->config->item("fr_db");
+
+        $records = array();
+        $table = "ANNOUNCEMENT";
+		
+        $fields = array("*");
+        
+        if(!empty($querystring))
+            $filter = "(username LIKE '%$querystring%' OR login_time LIKE '%$querystring%')";
+
+        $records = $this->lithefire->getAllRecords($db, $table, $fields, $start, $limit, $sort, $filter, $group);
+
+
+        $temp = array();
+        $total = 0;
+        if($records){
+        foreach($records as $row):
+            $temp[] = $row;
+            $total++;
+
+        endforeach;
+        }
+        $data['data'] = $temp;
+        $data['success'] = true;
+        $data['totalCount'] = $this->lithefire->countFilteredRows($db, $table, $filter, "");
+        die(json_encode($data));
+    }
+	
+	
+	function addAnnouncements(){        
+        $db = 'default';
+        $table = "ANNOUNCEMENT";
+		
+		$input = $this->input->post();
+		
+		$input['DCREATED'] = date("Y-m-d");
+		$input['TCREATED'] = date("H:i:s");
+		$input['AUTHOR'] = $this->session->userData("userName");
+		
+		
+        if($this->lithefire->countFilteredRows($db, $table, "TITLE = '".$this->input->post("TITLE")."'", "")){
+            $data['success'] = false;
+            $data['data'] = "Record already exists";
+            die(json_encode($data));
+        }
+        
+        $data = $this->lithefire->insertRow($db, $table, $input);
+
+        die(json_encode($data));
+    }
+	
+	function loadAnnouncements(){
+        
+        $db = "default";
+        
+
+        $id=$this->input->post('id');
+		
+		$fr_db = $this->config->item("fr_db");
+		
+        $table = "ANNOUNCEMENT";
+        $fields = array("*");
+		$param = "id";
+
+        $filter = "$param = '$id'";
+        
+
+        $records = array();
+        $records = $this->lithefire->getRecordWhere($db, $table, $filter, $fields);
+
+        $temp = array();
+
+        foreach($records as $row):
+
+            $data["data"] = $row;
+
+
+        endforeach;
+        $data['success'] = true;
+
+        die(json_encode($data));
+    }
+	
+	function updateAnnouncements(){
+        $db = 'default';
+
+        $table = "ANNOUNCEMENT";
+        
+		$param = "id";
+        $id=$this->input->post('id');
+        $filter = "$param = '$id'";
+
+        $input = array();
+        foreach($this->input->post() as $key => $val){
+            if($key == 'id')
+                continue;
+            if(!empty($val)){
+                $input[$key] = $val;
+            }
+        }
+
+		$input['DMODIFIED'] = date("Y-m-d");
+		$input['TMODIFIED'] = date("H:i:s");
+		//$input['AUTHOR'] = $this->session->userData("userName");
+
+        if($this->lithefire->countFilteredRows($db, $table, "TITLE = '".$this->input->post("TITLE")."' AND id != '$id'", "")){
+            $data['success'] = false;
+            $data['data'] = "Record already exists";
+            die(json_encode($data));
+        }
+
+
+        $data = $this->lithefire->updateRow($db, $table, $input, $filter);
+
+
+        die(json_encode($data));
+    }
+	
+	function deleteAnnouncements(){
+        
+        $table = "ANNOUNCEMENT";
+        $param = "id";
+       // $fields = $this->input->post();
+		$db = "default";
+        $id=$this->input->post('id');
+		//$COURIDNO=$this->input->post('COURIDNO');
+		$filter = "$param = $id";
+		$this->lithefire->deleteRow($db, $table, "id = '$id'");
+        $data = $this->lithefire->deleteRow($db, $table, $filter);
+
+        die(json_encode($data));
+    }
+	
+	function getUserType(){
+		
+		$db = "default";
+        $table = "tbl_user_type";
+        $fields = array("id, code, description");
+        $id = $this->input->post('id');
+
+        $start=$this->input->post('start');
+        $limit=$this->input->post('limit');
+		$filter = "id NOT IN (SELECT user_type_id FROM ANNOFILTER WHERE anno_id = '$id')";
+		$group = "";
+		$having = "";
+
+
+        $sort = $this->input->post('sort');
+        $dir = $this->input->post('dir');
+        $query = $this->input->post('query');
+        
+       
+
+        if(empty($sort) && empty($dir)){
+            $sort = "code";
+        }else{
+        	$sort = "$sort $dir";
+        }
+
+        if(!empty($query)){
+            $filter .= " AND (code LIKE '%$query%' OR code LIKE '%$query%')";
+        }
+
+        //$filter = array("is_delete"=>0);
+
+
+        $records = array();
+        $records = $this->lithefire->getAllRecords($db, $table, $fields, $start, $limit, $sort, $filter, $group, $having);
+        
+
+
+        $temp = array();
+        if($records){
+        foreach($records as $row):
+
+            $temp[] = $row;
+
+
+        endforeach;
+        }
+        $data['data'] = $temp;
+        $data['success'] = true;
+        $data['totalCount'] = $this->lithefire->countFilteredRows($db, $table, $filter, $group);
+        die(json_encode($data));
+		
+	}
+
+	function deleteUserType(){
+        $db = "default";
+        $table = "ANNOFILTER";
+        $param = "id";
+
+        $id=$this->input->post('id');
+
+
+		$filter = "$param = '$id'";
+        $data = $this->lithefire->deleteRow($db, $table, $filter);
+
+
+        die(json_encode($data));
+    }
+
+	function getFilteredUserType(){
+		$db = "default";
+        $table = "ANNOFILTER a LEFT JOIN tbl_user_type b ON a.user_type_id = b.id";
+        $fields = "a.id, b.description, b.code";
+
+        $start=$this->input->post('start');
+        $limit=$this->input->post('limit');
+
+
+        $sort = $this->input->post('sort');
+        $dir = $this->input->post('dir');
+        $query = $this->input->post('query');
+        $queryby = "";
+        $id = $this->input->post('id');
+		$filter = "a.anno_id = '$id'";
+		$group = "";
+		$having = "";
+
+        if(empty($sort) && empty($dir)){
+            $sort = "b.code";
+        }else{
+        	$sort = "$sort $dir";
+        }
+		/*
+        if(!empty($query)){
+            $filter .= " AND (b.description LIKE '%$query%' OR c.description LIKE '%$query%')";
+        }
+        //$filter = array("module.is_public"=>0, "module_group_access.group_id"=>$id);
+        //$filter = array("is_delete"=>0);
+
+        //$join = array("module"=>"module.id = module_group_access.module_id", "module_category b"=>"module.category_id = b.id");
+		*/
+        $records = array();
+        $records = $this->lithefire->getAllRecords($db, $table, $fields, $start, $limit, $sort, $filter, $group, $having);
+
+
+        $temp = array();
+        if($records){
+        foreach($records as $row):
+
+            $temp[] = $row;
+
+
+        endforeach;
+        }
+        $data['data'] = $temp;
+        $data['success'] = true;
+        $data['totalCount'] = $this->lithefire->countFilteredRows($db, $table, $filter, $group);
+        die(json_encode($data));
+		
+	}
+
+	function insertFilteredUserType(){
+		$db = "default";
+        $table = "ANNOFILTER";
+        $anno_id = $this->input->post("anno_id");
+
+        /*$input = array();
+        foreach($this->input->post() as $key => $val){
+            if(!empty($val)){
+                $input[$key] = $val;
+            }
+        }*/
+        $selected_items_json = $this->input->post('selected_items');
+
+		$selected_items_json = str_replace("\\", "", $selected_items_json);
+		$selected_item = json_decode($selected_items_json);
+
+		if(empty($selected_item)){
+			die(json_encode(array("success"=> false, "data" => "Unable to retrieve selected item.")));
+		}
+        $input = array();
+        $input['anno_id'] = $anno_id;
+        foreach($selected_item->data as $key => $value){
+			try{
+			$input['user_type_id'] = $value;
+                        $data = $this->lithefire->insertRow($db, $table, $input);
+			}catch(Exception $e){
+				continue;
+			}
+		}
+
+
+        die(json_encode($data));
+		
+	}
+	
 }
