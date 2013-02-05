@@ -15,7 +15,7 @@
 
  			var Objstore = new Ext.data.Store({
  						proxy: new Ext.data.HttpProxy({
- 							url: "<?=site_url("filereference/getEmployeeStatus")?>",
+ 							url: "<?php echo site_url("filereference/getEmployeeStatus")?>",
  							method: "POST"
  							}),
  						reader: new Ext.data.JsonReader({
@@ -93,7 +93,7 @@
  					 	},{
  					     	xtype: 'tbbutton',
  					     	text: 'ADD',
-							icon: '<?=base_url()?>images/icons/application_add.png',
+							icon: '/images/icons/application_add.png',
  							cls:'x-btn-text-icon',
 
  					     	handler: hrisv2_employee_status.app.Add
@@ -101,7 +101,7 @@
  					 	},'-',{
  					     	xtype: 'tbbutton',
  					     	text: 'EDIT',
-							icon: '<?=base_url()?>images/icons/application_edit.png',
+							icon: '/images/icons/application_edit.png',
  							cls:'x-btn-text-icon',
 
  					     	handler: hrisv2_employee_status.app.Edit
@@ -109,7 +109,7 @@
  					 	},'-',{
  					     	xtype: 'tbbutton',
  					     	text: 'DELETE',
-							icon: '<?=base_url()?>images/icons/application_delete.png',
+							icon: '/images/icons/application_delete.png',
  							cls:'x-btn-text-icon',
 
  					     	handler: hrisv2_employee_status.app.Delete
@@ -145,7 +145,7 @@
  			setForm: function(){
  		    var form = new Ext.form.FormPanel({
  		        labelWidth: 150,
- 		        url:"<?=site_url("filereference/addEmployeeStatus")?>",
+ 		        url:"<?php echo site_url("filereference/addEmployeeStatus")?>",
  		        method: 'POST',
  		        defaultType: 'textfield',
  		        frame: true,
@@ -192,7 +192,7 @@
  		        items: hrisv2_employee_status.app.Form,
  		        buttons: [{
  		         	text: 'Save',
-                                icon: '<?=base_url()?>images/icons/disk.png',  cls:'x-btn-text-icon',
+                                icon: '/images/icons/disk.png',  cls:'x-btn-text-icon',
 
  	                handler: function () {
  			            if(ExtCommon.util.validateFormFields(hrisv2_employee_status.app.Form)){//check if all forms are filled up
@@ -223,7 +223,7 @@
  	                }
  	            },{
  		            text: 'Cancel',
-                            icon: '<?=base_url()?>images/icons/cancel.png', cls:'x-btn-text-icon',
+                            icon: '/images/icons/cancel.png', cls:'x-btn-text-icon',
 
  		            handler: function(){
  			            _window.destroy();
@@ -252,12 +252,12 @@
  		        items: hrisv2_employee_status.app.Form,
  		        buttons: [{
  		         	text: 'Save',
-                                icon: '<?=base_url()?>images/icons/disk.png',  cls:'x-btn-text-icon',
+                                icon: '/images/icons/disk.png',  cls:'x-btn-text-icon',
 
  		            handler: function () {
  			            if(ExtCommon.util.validateFormFields(hrisv2_employee_status.app.Form)){//check if all forms are filled up
  		                hrisv2_employee_status.app.Form.getForm().submit({
- 			                url: "<?=site_url("filereference/updateEmployeeStatus")?>",
+ 			                url: "<?php echo site_url("filereference/updateEmployeeStatus")?>",
  			                params: {id: id},
  			                method: 'POST',
  			                success: function(f,action){
@@ -279,7 +279,7 @@
  		            }
  		        },{
  		            text: 'Cancel',
-                            icon: '<?=base_url()?>images/icons/cancel.png', cls:'x-btn-text-icon',
+                            icon: '/images/icons/cancel.png', cls:'x-btn-text-icon',
 
  		            handler: function(){
  			            _window.destroy();
@@ -288,7 +288,7 @@
  		    });
 
  		  	hrisv2_employee_status.app.Form.getForm().load({
- 				url: "<?=site_url("filereference/loadEmployeeStatus")?>",
+ 				url: "<?php echo site_url("filereference/loadEmployeeStatus")?>",
  				method: 'POST',
  				params: {id: id},
  				timeout: 300000,
@@ -322,7 +322,7 @@
    			if (btn == 'ok'){
 
    			Ext.Ajax.request({
-                            url: "<?=  site_url("filereference/deleteEmployeeStatus")?>",
+                            url: "<?php echo   site_url("filereference/deleteEmployeeStatus")?>",
 							params:{ id: id},
 							method: "POST",
 							timeout:300000000,

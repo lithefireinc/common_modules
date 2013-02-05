@@ -1,49 +1,49 @@
-<script type="text/javascript">
- Ext.namespace("hrisv2_department");
- hrisv2_department.app = function()
- {
- 	return{
- 		init: function()
- 		{
- 			ExtCommon.util.init();
- 			ExtCommon.util.quickTips();
- 			this.getGrid();
- 		},
- 		getGrid: function()
- 		{
- 			ExtCommon.util.renderSearchField('searchby');
 
- 			var Objstore = new Ext.data.Store({
- 						proxy: new Ext.data.HttpProxy({
- 							url: "<?php echo site_url("filereference/getDepartment")?>",
- 							method: "POST"
- 							}),
- 						reader: new Ext.data.JsonReader({
- 								root: "data",
- 								id: "id",
- 								totalProperty: "totalCount",
- 								fields: [
- 											{ name: "dept_idno"},
- 											{ name: "dept_type"}
- 										]
+		<div id="mainBody"></div>
+		<script type="text/javascript">
+		 Ext.namespace("FILERESI");
+		 FILERESI.app = function()
+		 {
+		 	return{
+	 		init: function()
+	 		{
+	 			ExtCommon.util.init();
+	 			ExtCommon.util.quickTips();
+	 			this.getGrid();
+	 		},
+	 		getGrid: function()
+	 		{
+	 			ExtCommon.util.renderSearchField('searchby');
+	
+	 			var Objstore = new Ext.data.Store({
+	 						proxy: new Ext.data.HttpProxy({
+	 							url: "<?php echo site_url('filereference/getFILERESI') ?>",
+	 							method: "POST"
+	 							}),
+	 						reader: new Ext.data.JsonReader({
+	 								root: "data",
+	 								id: "id",
+	 								totalProperty: "totalCount",
+	 								fields: [
+		{ name: 'RESICODE'},{ name: 'RESIIDNO'},{ name: 'RESIDENCY'}
+		]
  						}),
  						remoteSort: true,
  						baseParams: {start: 0, limit: 25}
  					});
-
+		
+		var colModel = new Ext.grid.ColumnModel([
+		{header: "Id No.", width: 100, sortable: true, dataIndex: 'RESIIDNO'},
+		{header: "Residency", width: 150, sortable: true, dataIndex: 'RESIDENCY'}
+		]);
 
  			var grid = new Ext.grid.GridPanel({
- 				id: 'hrisv2_departmentgrid',
+ 				id: 'FILERESIgrid',
  				height: 300,
- 				width: 900,
+ 				width: '100%',
  				border: true,
  				ds: Objstore,
- 				cm:  new Ext.grid.ColumnModel(
- 						[
-                                                    { header: "Id", width: 75, sortable: true, dataIndex: "dept_idno" },
- 						  { header: "Classification", width: 300, sortable: true, dataIndex: "dept_type" }
- 						]
- 				),
+ 				cm:  colModel,
  				sm: new Ext.grid.RowSelectionModel({singleSelect:true}),
  	        	loadMask: true,
  	        	bbar:
@@ -59,12 +59,10 @@
                     fieldLabel: 'Search',
                     hiddenName:'searchby-form',
                     id: 'searchby',
-					//store: Objstore,
                     typeAhead: true,
                     triggerAction: 'all',
                     emptyText:'Search By...',
                     selectOnFocus:true,
-
                     store: new Ext.data.SimpleStore({
 				         id:0
 				        ,fields:
@@ -96,7 +94,7 @@
 							icon: '/images/icons/application_add.png',
  							cls:'x-btn-text-icon',
 
- 					     	handler: hrisv2_department.app.Add
+ 					     	handler: FILERESI.app.Add
 
  					 	},'-',{
  					     	xtype: 'tbbutton',
@@ -104,7 +102,7 @@
 							icon: '/images/icons/application_edit.png',
  							cls:'x-btn-text-icon',
 
- 					     	handler: hrisv2_department.app.Edit
+ 					     	handler: FILERESI.app.Edit
 
  					 	},'-',{
  					     	xtype: 'tbbutton',
@@ -112,92 +110,87 @@
 							icon: '/images/icons/application_delete.png',
  							cls:'x-btn-text-icon',
 
- 					     	handler: hrisv2_department.app.Delete
+ 					     	handler: FILERESI.app.Delete
 
  					 	}
  	    			 ]
  	    	});
 
- 			hrisv2_department.app.Grid = grid;
- 			hrisv2_department.app.Grid.getStore().load({params:{start: 0, limit: 25}});
+ 			FILERESI.app.Grid = grid;
+ 			FILERESI.app.Grid.getStore().load({params:{start: 0, limit: 25}});
 
  			var _window = new Ext.Panel({
- 		        title: 'Classification',
+ 		        title: 'Question Classification',
  		        width: '100%',
- 		        height:420,
+ 		        height:'auto',
  		        renderTo: 'mainBody',
  		        draggable: false,
  		        layout: 'fit',
- 		        items: [hrisv2_department.app.Grid],
+ 		        items: [FILERESI.app.Grid],
  		        resizable: false
-
- 			    /*listeners : {
- 				    	  close: function(p){
- 					    	  window.location="../"
- 					      }
- 			       	} */
  	        });
 
  	        _window.render();
 
 
  		},
- 			setForm: function(){
+		
+		setForm: function(){
+
  		    var form = new Ext.form.FormPanel({
  		        labelWidth: 150,
- 		        url:"<?php echo site_url("filereference/addDepartment")?>",
+ 		        url: "<?php echo site_url('filereference/addFILERESI') ?>",
  		        method: 'POST',
  		        defaultType: 'textfield',
  		        frame: true,
-
  		        items: [ {
  					xtype:'fieldset',
  					title:'Fields w/ Asterisks are required.',
  					width:'auto',
  					height:'auto',
  					items:[
-                        {
-
-                            xtype:'textfield',
- 		            fieldLabel: 'Classification*',
-                            autoCreate : {tag: "input", type: "text", size: "20", autocomplete: "off", maxlength: "47"},
- 		            name: 'dept_type',
+				
+				{
+                    xtype:'textfield',
+ 		            fieldLabel: 'RESIDENCY*',
+ 		            name: 'RESIDENCY',
  		            allowBlank:false,
- 		            anchor:'93%',  // anchor width by percentage
- 		            id: 'dept_type'
+ 		            anchor:'95%',  // anchor width by percentage
+ 		            id: 'RESIDENCY'
  		        }
+ 		        
 
- 		        ]
+ 		        		]
  					}
- 		        ]
+ 					]
  		    });
 
- 		    hrisv2_department.app.Form = form;
+ 		    FILERESI.app.Form = form;
  		},
+		
  		Add: function(){
 
- 			hrisv2_department.app.setForm();
+ 			FILERESI.app.setForm();
 
  		  	var _window;
 
  		    _window = new Ext.Window({
- 		        title: 'New Classification',
+ 		        title: 'New Residency Status',
  		        width: 510,
- 		        height:170,
+ 		        height: 160,
  		        layout: 'fit',
  		        plain:true,
  		        modal: true,
  		        bodyStyle:'padding:5px;',
  		        buttonAlign:'center',
- 		        items: hrisv2_department.app.Form,
+ 		        items: FILERESI.app.Form,
  		        buttons: [{
  		         	text: 'Save',
-                                icon: '/images/icons/disk.png',  cls:'x-btn-text-icon',
-
+                    icon: '/images/icons/disk.png',  
+                    cls:'x-btn-text-icon',
  	                handler: function () {
- 			            if(ExtCommon.util.validateFormFields(hrisv2_department.app.Form)){//check if all forms are filled up
-
- 		                hrisv2_department.app.Form.getForm().submit({
+ 			            if(ExtCommon.util.validateFormFields(FILERESI.app.Form)){//check if all forms are filled up
+ 		                FILERESI.app.Form.getForm().submit({
  			                success: function(f,action){
                  		    	Ext.MessageBox.alert('Status', action.result.data);
                   		    	 Ext.Msg.show({
@@ -206,7 +199,7 @@
   								     buttons: Ext.Msg.OK,
   								     icon: 'icon'
   								 });
- 				                ExtCommon.util.refreshGrid(hrisv2_department.app.Grid.getId());
+ 				                ExtCommon.util.refreshGrid(FILERESI.app.Grid.getId());
  				                _window.destroy();
  			                },
  			                failure: function(f,a){
@@ -223,8 +216,8 @@
  	                }
  	            },{
  		            text: 'Cancel',
-                            icon: '/images/icons/cancel.png', cls:'x-btn-text-icon',
-
+                    icon: '/images/icons/cancel.png', 
+                    cls:'x-btn-text-icon',
  		            handler: function(){
  			            _window.destroy();
  		            }
@@ -232,37 +225,36 @@
  		    });
  		  	_window.show();
  		},
- 		Edit: function(){
+		
+		Edit: function(){
+ 			if(ExtCommon.util.validateSelectionGrid(FILERESI.app.Grid.getId())){//check if user has selected an item in the grid
+ 			var sm = FILERESI.app.Grid.getSelectionModel();
+ 			var id = sm.getSelected().data.RESICODE;
 
-
- 			if(ExtCommon.util.validateSelectionGrid(hrisv2_department.app.Grid.getId())){//check if user has selected an item in the grid
- 			var sm = hrisv2_department.app.Grid.getSelectionModel();
- 			var id = sm.getSelected().data.dept_idno;
-
- 			hrisv2_department.app.setForm();
+ 			FILERESI.app.setForm();
  		    _window = new Ext.Window({
- 		        title: 'Update Classification',
+ 		        title: 'Update Residency Status',
  		        width: 510,
- 		        height:170,
+ 		        height:160,
  		        layout: 'fit',
  		        plain:true,
  		        modal: true,
  		        bodyStyle:'padding:5px;',
  		        buttonAlign:'center',
- 		        items: hrisv2_department.app.Form,
+ 		        items: FILERESI.app.Form,
  		        buttons: [{
  		         	text: 'Save',
-                                icon: '/images/icons/disk.png',  cls:'x-btn-text-icon',
-
+                    icon: '/images/icons/disk.png',  
+                    cls:'x-btn-text-icon',
  		            handler: function () {
- 			            if(ExtCommon.util.validateFormFields(hrisv2_department.app.Form)){//check if all forms are filled up
- 		                hrisv2_department.app.Form.getForm().submit({
- 			                url: "<?php echo site_url("filereference/updateDepartment")?>",
+ 			            if(ExtCommon.util.validateFormFields(FILERESI.app.Form)){//check if all forms are filled up
+ 		                FILERESI.app.Form.getForm().submit({
+ 			                url: "<?php echo site_url('filereference/updateFILERESI') ?>",
  			                params: {id: id},
  			                method: 'POST',
  			                success: function(f,action){
                  		    	Ext.MessageBox.alert('Status', action.result.data);
- 				                ExtCommon.util.refreshGrid(hrisv2_department.app.Grid.getId());
+ 				                ExtCommon.util.refreshGrid(FILERESI.app.Grid.getId());
  				                _window.destroy();
  			                },
  			                failure: function(f,a){
@@ -287,8 +279,8 @@
  		        }]
  		    });
 
- 		  	hrisv2_department.app.Form.getForm().load({
- 				url: "<?php echo site_url("filereference/loadDepartment")?>",
+ 		  	FILERESI.app.Form.getForm().load({
+ 				url: "<?php echo site_url('filereference/loadFILERESI') ?>",
  				method: 'POST',
  				params: {id: id},
  				timeout: 300000,
@@ -308,21 +300,21 @@
  			});
  			}else return;
  		},
+		
 		Delete: function(){
 
 
-			if(ExtCommon.util.validateSelectionGrid(hrisv2_department.app.Grid.getId())){//check if user has selected an item in the grid
-			var sm = hrisv2_department.app.Grid.getSelectionModel();
-			var id = sm.getSelected().data.dept_idno;
+			if(ExtCommon.util.validateSelectionGrid(FILERESI.app.Grid.getId())){//check if user has selected an item in the grid
+			var sm = FILERESI.app.Grid.getSelectionModel();
+			var id = sm.getSelected().data.RESICODE;
 			Ext.Msg.show({
-   			title:'Delete',
+   			title:'Delete Selected',
   			msg: 'Are you sure you want to delete this record?',
    			buttons: Ext.Msg.OKCANCEL,
    			fn: function(btn, text){
    			if (btn == 'ok'){
-
    			Ext.Ajax.request({
-                            url: "<?php echo   site_url("filereference/deleteDepartment")?>",
+                            url: "<?php echo site_url('filereference/deleteFILERESI') ?>",
 							params:{ id: id},
 							method: "POST",
 							timeout:300000000,
@@ -330,14 +322,7 @@
                 		    	var response = Ext.decode(responseObj.responseText);
 						if(response.success == true)
 						{
-							Ext.Msg.show({
-								title: 'Status',
-								msg: "Record deleted successfully",
-								icon: Ext.Msg.INFO,
-								buttons: Ext.Msg.OK
-							});
-							hrisv2_department.app.Grid.getStore().load({params:{start:0, limit: 25}});
-
+							FILERESI.app.Grid.getStore().load({params:{start:0, limit: 25}});
 							return;
 
 						}
@@ -373,11 +358,11 @@
 
 
 		}
- 	}
+		
+		}
+		}();
 
- }();
-
- Ext.onReady(hrisv2_department.app.init, hrisv2_department.app);
-
-</script>
-<div id="mainBody"></div>
+	 Ext.onReady(FILERESI.app.init, FILERESI.app);
+	
+	</script>
+		

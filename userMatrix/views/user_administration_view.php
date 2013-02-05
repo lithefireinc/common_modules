@@ -16,7 +16,7 @@
 
  			var Objstore = new Ext.data.Store({
  						proxy: new Ext.data.HttpProxy({
- 							url: "<?=site_url("userMatrix/getUsers")?>",
+ 							url: "<?php echo site_url("userMatrix/getUsers")?>",
  							method: "POST"
  							}),
  						reader: new Ext.data.JsonReader({
@@ -140,7 +140,7 @@
 
  		    var form = new Ext.form.FormPanel({
  		        labelWidth: 150,
- 		        url:"<?=site_url("userMatrix/updateUserName")?>",
+ 		        url:"<?php echo site_url("userMatrix/updateUserName")?>",
  		        method: 'POST',
  		        defaultType: 'textfield',
  		        frame: true,
@@ -268,7 +268,7 @@
  		            handler: function () {
  			            if(ExtCommon.util.validateFormFields(hrisv2_user_admin.app.Form)){//check if all forms are filled up
  		                hrisv2_user_admin.app.Form.getForm().submit({
- 			                url: "<?=site_url("userMatrix/updateUserName")?>",
+ 			                url: "<?php echo site_url("userMatrix/updateUserName")?>",
  			                params: {id: id},
  			                method: 'POST',
  			                success: function(f,action){
@@ -303,7 +303,7 @@
 
 
  		  	hrisv2_user_admin.app.Form.getForm().load({
- 				url: "<?=site_url("userMatrix/loadUser")?>",
+ 				url: "<?php echo site_url("userMatrix/loadUser")?>",
  				method: 'POST',
  				params: {id: id, user_type: user_type},
  				timeout: 300000,
@@ -425,7 +425,7 @@
 					root: 'data',
 					totalProperty: 'totalCount',
 					fields:[{name: 'id'}, {name: 'name'}],
-					url: "<?=site_url("userMatrix/getUserTypeCombo")?>",
+					url: "<?php echo site_url("userMatrix/getUserTypeCombo")?>",
 					params: {start: 0, limit: 10}
 
 				}),
@@ -553,7 +553,7 @@
 
 							var form = new Ext.form.FormPanel({
 				 		        labelWidth: 150,
-				 		        url:'<?=site_url("userMatrix/changePassword")?>',
+				 		        url:'<?php echo site_url("userMatrix/changePassword")?>',
 				 		        method: 'POST',
 				 		        defaultType: 'textfield',
 				 		        frame: true,

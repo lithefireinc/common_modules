@@ -15,7 +15,7 @@
 
  			var Objstore = new Ext.data.Store({
  						proxy: new Ext.data.HttpProxy({
- 							url: "<?=site_url("filereference/getPosition")?>",
+ 							url: "<?php echo site_url("filereference/getPosition")?>",
  							method: "POST"
  							}),
  						reader: new Ext.data.JsonReader({
@@ -41,7 +41,7 @@
  				cm:  new Ext.grid.ColumnModel(
  						[
                                                     { header: "Id", width: 75, sortable: true, dataIndex: "id" },
- 						  { header: "Position", width: 300, sortable: true, dataIndex: "description" }
+ 						  { header: "Designation", width: 300, sortable: true, dataIndex: "description" }
  						]
  				),
  				sm: new Ext.grid.RowSelectionModel({singleSelect:true}),
@@ -93,7 +93,7 @@
  					 	},{
  					     	xtype: 'tbbutton',
  					     	text: 'ADD',
-							icon: '<?=base_url()?>images/icons/application_add.png',
+							icon: '/images/icons/application_add.png',
  							cls:'x-btn-text-icon',
 
  					     	handler: hrisv2_position.app.Add
@@ -101,7 +101,7 @@
  					 	},'-',{
  					     	xtype: 'tbbutton',
  					     	text: 'EDIT',
-							icon: '<?=base_url()?>images/icons/application_edit.png',
+							icon: '/images/icons/application_edit.png',
  							cls:'x-btn-text-icon',
 
  					     	handler: hrisv2_position.app.Edit
@@ -109,7 +109,7 @@
  					 	},'-',{
  					     	xtype: 'tbbutton',
  					     	text: 'DELETE',
-							icon: '<?=base_url()?>images/icons/application_delete.png',
+							icon: '/images/icons/application_delete.png',
  							cls:'x-btn-text-icon',
 
  					     	handler: hrisv2_position.app.Delete
@@ -122,7 +122,7 @@
  			hrisv2_position.app.Grid.getStore().load({params:{start: 0, limit: 25}});
 
  			var _window = new Ext.Panel({
- 		        title: 'Position',
+ 		        title: 'Designation',
  		        width: '100%',
  		        height:420,
  		        renderTo: 'mainBody',
@@ -145,7 +145,7 @@
  			setForm: function(){
  		    var form = new Ext.form.FormPanel({
  		        labelWidth: 150,
- 		        url:"<?=site_url("filereference/addPosition")?>",
+ 		        url:"<?php echo site_url("filereference/addPosition")?>",
  		        method: 'POST',
  		        defaultType: 'textfield',
  		        frame: true,
@@ -159,7 +159,7 @@
                         {
 
                             xtype:'textfield',
- 		            fieldLabel: 'Position*',
+ 		            fieldLabel: 'Designation*',
                             autoCreate : {tag: "input", type: "text", size: "20", autocomplete: "off", maxlength: "47"},
  		            name: 'description',
  		            allowBlank:false,
@@ -181,7 +181,7 @@
  		  	var _window;
 
  		    _window = new Ext.Window({
- 		        title: 'New Position',
+ 		        title: 'New Designation',
  		        width: 510,
  		        height:170,
  		        layout: 'fit',
@@ -192,7 +192,7 @@
  		        items: hrisv2_position.app.Form,
  		        buttons: [{
  		         	text: 'Save',
-                                icon: '<?=base_url()?>images/icons/disk.png',  cls:'x-btn-text-icon',
+                                icon: '/images/icons/disk.png',  cls:'x-btn-text-icon',
 
  	                handler: function () {
  			            if(ExtCommon.util.validateFormFields(hrisv2_position.app.Form)){//check if all forms are filled up
@@ -223,7 +223,7 @@
  	                }
  	            },{
  		            text: 'Cancel',
-                            icon: '<?=base_url()?>images/icons/cancel.png', cls:'x-btn-text-icon',
+                            icon: '/images/icons/cancel.png', cls:'x-btn-text-icon',
 
  		            handler: function(){
  			            _window.destroy();
@@ -241,7 +241,7 @@
 
  			hrisv2_position.app.setForm();
  		    _window = new Ext.Window({
- 		        title: 'Update Position',
+ 		        title: 'Update Designation',
  		        width: 510,
  		        height:170,
  		        layout: 'fit',
@@ -252,12 +252,12 @@
  		        items: hrisv2_position.app.Form,
  		        buttons: [{
  		         	text: 'Save',
-                                icon: '<?=base_url()?>images/icons/disk.png',  cls:'x-btn-text-icon',
+                                icon: '/images/icons/disk.png',  cls:'x-btn-text-icon',
 
  		            handler: function () {
  			            if(ExtCommon.util.validateFormFields(hrisv2_position.app.Form)){//check if all forms are filled up
  		                hrisv2_position.app.Form.getForm().submit({
- 			                url: "<?=site_url("filereference/updatePosition")?>",
+ 			                url: "<?php echo site_url("filereference/updatePosition")?>",
  			                params: {id: id},
  			                method: 'POST',
  			                success: function(f,action){
@@ -279,7 +279,7 @@
  		            }
  		        },{
  		            text: 'Cancel',
-                            icon: '<?=base_url()?>images/icons/cancel.png', cls:'x-btn-text-icon',
+                            icon: '/images/icons/cancel.png', cls:'x-btn-text-icon',
 
  		            handler: function(){
  			            _window.destroy();
@@ -288,7 +288,7 @@
  		    });
 
  		  	hrisv2_position.app.Form.getForm().load({
- 				url: "<?=site_url("filereference/loadPosition")?>",
+ 				url: "<?php echo site_url("filereference/loadPosition")?>",
  				method: 'POST',
  				params: {id: id},
  				timeout: 300000,
@@ -322,7 +322,7 @@
    			if (btn == 'ok'){
 
    			Ext.Ajax.request({
-                            url: "<?=  site_url("filereference/deletePosition")?>",
+                            url: "<?php echo   site_url("filereference/deletePosition")?>",
 							params:{ id: id},
 							method: "POST",
 							timeout:300000000,

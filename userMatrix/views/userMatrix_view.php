@@ -992,7 +992,7 @@
 			   			if (btn == 'ok'){
 
 			   			Ext.Ajax.request({
-                                                    url: "<?=site_url("userMatrix/deleteModule")?>",
+                                                    url: "<?php echo site_url("userMatrix/deleteModule")?>",
 										params:{ id: id},
 										method: "POST",
 										timeout:300000000,
