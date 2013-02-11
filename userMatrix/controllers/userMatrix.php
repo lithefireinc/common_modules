@@ -1144,7 +1144,7 @@ class UserMatrix extends MY_Controller
  			".$value.".app.Grid.getStore().load({params:{start: 0, limit: 25}});
 
  			var _window = new Ext.Panel({
- 		        title: 'Question Classification',
+ 		        title: '".$value."',
  		        width: '100%',
  		        height:'auto',
  		        renderTo: 'mainBody',
