@@ -807,7 +807,7 @@ class UserMatrix extends MY_Controller
 	
 	public function generateScaffolding()
 	{
-		$value=$this->input->post("table_name");
+		$value=ucfirst($this->input->post("table_name"));
 		$columns = $this->lithefire->fetchAllRecords("default", "information_schema.columns", "table_name = '$value'", array("COLUMN_NAME", "TABLE_SCHEMA"));
 		$ctr = count($columns);	
 		
