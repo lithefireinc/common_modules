@@ -848,7 +848,7 @@ class UserMatrix extends MY_Controller
 	        \$query = \$this->input->post('query');
 	
 	        \$records = array();
-	        \$table = \"$value\";
+	        \$table = \"".strtolower($value)."\";
 	        \$fields = array(");
 	    foreach($columns as $row):
 			fwrite($fp, "\"".$row['COLUMN_NAME']."\",");
@@ -901,7 +901,7 @@ class UserMatrix extends MY_Controller
 		
 		fwrite($fp, "function add$value(){
 	        \$db = '$db';
-	        \$table = \"$value\";
+	        \$table = \"".strtolower($value)."\";
 			\$input = \$this->input->post();
 			
 			/* uncomment for checking duplicates (change \$fieldname)
@@ -926,7 +926,7 @@ class UserMatrix extends MY_Controller
 	        
 	
 	        \$id=\$this->input->post('id');
-	        \$table = \"$value\";
+	        \$table = \"".strtolower($value)."\";
 			\$param = \"$pk\";
 	
 	        \$filter = \"\$param = '\$id'\";
@@ -953,7 +953,7 @@ class UserMatrix extends MY_Controller
 		function update$value(){
 	        \$db = '$db';
 	
-	        \$table = \"$value\";
+	        \$table = \"".strtolower($value)."\";
 	        
 			\$param = \"$pk\";
 	        \$id=\$this->input->post('id');
@@ -984,7 +984,7 @@ class UserMatrix extends MY_Controller
 		
 		fwrite($fp, "
 		function delete$value(){
-	        \$table = \"$value\";
+	        \$table = \"".strtolower($value)."\";
 	        \$param = \"$pk\";
 	       
 			\$db = \"$db\";
