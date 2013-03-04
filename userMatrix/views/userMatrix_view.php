@@ -1065,7 +1065,7 @@
 
                                          });
 
-                                         var sm1 = new Ext.grid.CheckboxSelectionModel({checkOnly: true,dataIndex: 'id'});
+                                         var sm1 = new Ext.grid.CheckboxSelectionModel({checkOnly: true, dataIndex: 'id'});
 
 
 
