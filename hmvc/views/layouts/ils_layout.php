@@ -4,7 +4,7 @@
 
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title><?php echo $title; ?></title>
-		<link href= "/css/ui_mainpage.css" rel="stylesheet" type="text/css" />
+		<link href= "/css/ils/ui_mainpage.css" rel="stylesheet" type="text/css" />
 <!--[if lt IE 8]>
 
 
@@ -78,15 +78,10 @@ position:relative;
 
         
 <div id="maincontent">
-  <div id="left">
-     <div id="object2"><img src="/images/hrislogo.png" /></div>
-     
-  </div>
+
+<img src="/images/ilsheader.jpg" />
 
 
-  <div id="right">
-    <div id="object1"><img src="/images/hrisrightheader.png" align="right" /></div>
-  </div>
     
 </div>
 
@@ -392,7 +387,7 @@ a:active {
 
 </style><div id="mainfooter">
 
-  <div align="center">ILS / COPYRIGHT &copy; 2012 Lithefire Solutions Inc.<br /></div>
+  <div align="center">ILS / COPYRIGHT &copy; <?php echo date("Y"); ?> Lithefire Solutions Inc.<br /></div>
 
   <div class ="footer" align="center">www.lithefire.com</div>
 
