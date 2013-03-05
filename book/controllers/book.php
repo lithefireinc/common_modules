@@ -10,7 +10,15 @@ class Book extends MY_Controller{
   
 
         $data['userId'] = $this->session->userdata('userId');
-        $data['userName'] = $this->session->userdata('userName');
+        
+        $username = $this->session->userdata('userName');
+		$username_identity = $this->session->userdata($this->config->item('session_identifier', 'ion_auth').'_userName');
+		if(isset($username_identity)){
+			$data['userName'] = $username_identity;
+		}elseif(isset($username)){
+        	$data['userName'] = $username;
+		}
+		
         $data['title'] = 'ILS: Book Entry';
 
 
@@ -537,7 +545,13 @@ class Book extends MY_Controller{
 	function search(){
 
         $data['userId'] = $this->session->userdata('userId');
-        $data['userName'] = $this->session->userdata('userName');
+        $username = $this->session->userdata('userName');
+		$username_identity = $this->session->userdata($this->config->item('session_identifier', 'ion_auth').'_userName');
+		if(isset($username_identity)){
+			$data['userName'] = $username_identity;
+		}elseif(isset($username)){
+        	$data['userName'] = $username;
+		}
         $data['title'] = 'ILS: Book Search';
 
 
@@ -670,7 +684,13 @@ class Book extends MY_Controller{
   
 
         $data['userId'] = $this->session->userdata('userId');
-        $data['userName'] = $this->session->userdata('userName');
+        $username = $this->session->userdata('userName');
+		$username_identity = $this->session->userdata($this->config->item('session_identifier', 'ion_auth').'_userName');
+		if(isset($username_identity)){
+			$data['userName'] = $username_identity;
+		}elseif(isset($username)){
+        	$data['userName'] = $username;
+		}
         $data['title'] = 'ILS: Book Borrowing/Returning';
 
 
@@ -713,9 +733,9 @@ class Book extends MY_Controller{
         
 		$fr_db = $this->config->item("fr_db");
         $records = array();
-        $table = "BORROWEDBOOKS a LEFT JOIN $fr_db.COLLHIST b ON a.STUDIDNO = b.STUDIDNO LEFT JOIN $fr_db.BOOKSTAT c ON a.BOSTIDNO = c.BOSTIDNO
+        $table = "BORROWEDBOOKS a LEFT JOIN $fr_db.BOOKSTAT c ON a.BOSTIDNO = c.BOSTIDNO
         LEFT JOIN BOOKS d ON a.ACCESSNO = d.ACCESSNO LEFT JOIN $fr_db.FILECATE e ON d.CATEIDNO = e.CATEIDNO";
-        $fields = array("a.*", "b.NAME", "c.BOOKSTAT", "d.TITLE", "e.FINE");
+        $fields = array("a.*", "c.BOOKSTAT", "d.TITLE", "e.FINE");
 
         $records = $this->lithefire->getAllRecords($db, $table, $fields, $start, $limit, $sort, $filter, $group);
        // die($this->db->last_query());
@@ -743,7 +763,9 @@ class Book extends MY_Controller{
 					$row['BOOKSTAT'] = 'OVERDUE';
 				} 
 			}
-
+			$row['NAME'] = $this->lithefire->getFieldWhere($db, $fr_db.".COLLHIST", "STUDIDNO = '".$row['STUDIDNO']."'", "NAME");
+			
+			
             $temp[] = $row;
             $total++;
 

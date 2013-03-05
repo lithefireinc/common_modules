@@ -111,7 +111,7 @@ ExtCommon.util.validations();
     icon: '/images/icons/house.png',
     cls: 'x-btn-text-icon',
     handler: function(){
-        window.location="<?php echo site_url("main") ?>";
+        window.location="<?php echo site_url("home") ?>";
     }
 }, '-',
 		<?php
@@ -343,7 +343,7 @@ WHERE a.access_level IN (0, $id) ORDER BY b.order");*/
     icon: '/images/icons/door_out.png',
     cls: 'x-btn-text-icon',
     handler: function(){
-        window.location="<?php echo site_url("main/logout") ?>";
+        window.location="<?php echo site_url("home/logout") ?>";
     }
 }
 

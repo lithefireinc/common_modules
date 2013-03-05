@@ -15,7 +15,15 @@ class UserMatrix extends MY_Controller
 
 
         $data['userId'] = $this->session->userdata('userId');
-        $data['userName'] = $this->session->userdata('userName');
+		$username = $this->session->userdata('userName');
+		$username_identity = $this->session->userdata($this->config->item('session_identifier', 'ion_auth').'_userName');
+		if(isset($username_identity)){
+			$data['userName'] = $username_identity;
+		}elseif(isset($username)){
+        	$data['userName'] = $username;
+		}
+		else
+		
 
         //$this->load->view('header_view', $data);
         //$this->load->view('menu_view', $data);
@@ -32,7 +40,13 @@ class UserMatrix extends MY_Controller
 
 
         $data['userId'] = $this->session->userdata('userId');
-        $data['userName'] = $this->session->userdata('userName');
+        $username = $this->session->userdata('userName');
+		$username_identity = $this->session->userdata($this->config->item('session_identifier', 'ion_auth').'_userName');
+		if(isset($username_identity)){
+			$data['userName'] = $username_identity;
+		}elseif(isset($username)){
+        	$data['userName'] = $username;
+		}
 
     
         $this->layout->view('userMatrix/scaffolding_view', $data);
@@ -487,7 +501,13 @@ class UserMatrix extends MY_Controller
 
 
         $data['userId'] = $this->session->userdata('userId');
-        $data['userName'] = $this->session->userdata('userName');
+        $username = $this->session->userdata('userName');
+		$username_identity = $this->session->userdata($this->config->item('session_identifier', 'ion_auth').'_userName');
+		if(isset($username_identity)){
+			$data['userName'] = $username_identity;
+		}elseif(isset($username)){
+        	$data['userName'] = $username;
+		}
 
      
         $this->layout->view('userMatrix/user_administration_view', $data);
