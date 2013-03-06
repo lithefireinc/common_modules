@@ -13,15 +13,23 @@ class Student extends MY_Controller {
 	}
 
 	function profile(){
-   
+   		
         $data['title'] = $this->config->item("app_name").': Student Profile';
         $data['userId'] = $this->session->userData('userId');
-        $data['userName'] = $this->session->userData('userName');
+		
+        $username = $this->session->userdata('userName');
+		$username_identity = $this->session->userdata($this->config->item('session_identifier', 'ion_auth').'_userName');
+		if(isset($username_identity) && !empty($username_identity)){
+			$data['userName'] = $username_identity;
+		}elseif(isset($username)){
+        	$data['userName'] = $username;
+		}
+		
 		$data['add'] = 0;
 		$data['edit'] = 0;
 		$data['delete'] = 0;
 		$data['view'] = 1;
-       $record = $this->lithefire->getRecordWhere("default", "tbl_access", "username = '".$this->session->userData('userName')."'", array("*"));
+       $record = $this->lithefire->getRecordWhere("default", "tbl_access", "username = '".$data['userName']."'", array("*"));
 	   if($record){
 	   	$data['add'] = $record[0]['add'];
 		$data['edit'] = $record[0]['edit'];
