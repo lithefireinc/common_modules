@@ -96,7 +96,7 @@ ExtCommon.util.renderSearchField('searchby');
                                             /*    {
                                                     xtype: 'tbbutton',
                                                     text: 'ADD',
-                                                    icon: '<?=base_url()?>images/icons/application_add.png',  cls:'x-btn-text-icon',
+                                                    icon: '/images/icons/application_add.png',  cls:'x-btn-text-icon',
                                                     handler: approver.app.addAppType
                                                 }, '-',
                                                 {
@@ -197,19 +197,19 @@ ExtCommon.util.renderSearchField('searchby');
                                         {
                                                     xtype: 'tbbutton',
                                                     text: 'ADD',
-                                                    icon: '<?=base_url()?>images/icons/application_add.png',  cls:'x-btn-text-icon',
+                                                    icon: '/images/icons/application_add.png',  cls:'x-btn-text-icon',
                                                     handler: approver.app.addAppGroup
                                                 }, '-',
                                                 {
                                                     xtype: 'tbbutton',
                                                     text: 'EDIT',
-                                                    icon: '<?=base_url()?>images/icons/application_edit.png',  cls:'x-btn-text-icon',
+                                                    icon: '/images/icons/application_edit.png',  cls:'x-btn-text-icon',
                                                     handler: approver.app.editAppGroup
                                                 }, '-',
                                                 {
                                                     xtype: 'tbbutton',
                                                     text: 'MEMBERS',
-                                                    icon: '<?=base_url()?>images/icons/group.png',  cls:'x-btn-text-icon',
+                                                    icon: '/images/icons/group.png',  cls:'x-btn-text-icon',
                                                     handler: approver.app.showAppGroupMembersGrid
                                                 }
  			 ]
@@ -300,25 +300,25 @@ ExtCommon.util.renderSearchField('searchby');
                                         {
                                                     xtype: 'tbbutton',
                                                     text: 'ADD',
-                                                    icon: '<?=base_url()?>images/icons/application_add.png',  cls:'x-btn-text-icon',
+                                                    icon: '/images/icons/application_add.png',  cls:'x-btn-text-icon',
                                                     handler: approver.app.addEmpGroup
                                                 }, '-',
                                                 {
                                                     xtype: 'tbbutton',
                                                     text: 'EDIT',
-                                                    icon: '<?=base_url()?>images/icons/application_edit.png',  cls:'x-btn-text-icon',
+                                                    icon: '/images/icons/application_edit.png',  cls:'x-btn-text-icon',
                                                     handler: approver.app.editEmpGroup
                                                 }, '-',
                                                 {
                                                     xtype: 'tbbutton',
                                                     text: 'MEMBERS',
-                                                    icon: '<?=base_url()?>images/icons/group.png',  cls:'x-btn-text-icon',
+                                                    icon: '/images/icons/group.png',  cls:'x-btn-text-icon',
                                                     handler: approver.app.showEmpGroupMembersGrid
                                                 }, '-',
                                                 {
                                                     xtype: 'tbbutton',
                                                     text: 'APPROVAL FLOW',
-                                                    icon: '<?=base_url()?>images/icons/chart_organisation.png',  cls:'x-btn-text-icon',
+                                                    icon: '/images/icons/chart_organisation.png',  cls:'x-btn-text-icon',
                                                     handler: approver.app.showApprovalFlowGrid
                                                 }
  			 ]
@@ -409,19 +409,19 @@ ExtCommon.util.renderSearchField('searchby');
                                         {
                                                     xtype: 'tbbutton',
                                                     text: 'ADD',
-                                                    icon: '<?=base_url()?>images/icons/application_add.png',  cls:'x-btn-text-icon',
+                                                    icon: '/images/icons/application_add.png',  cls:'x-btn-text-icon',
                                                     handler: approver.app.addAppTree
                                                 }, '-',
                                                 {
                                                     xtype: 'tbbutton',
                                                     text: 'EDIT',
-                                                    icon: '<?=base_url()?>images/icons/application_edit.png',  cls:'x-btn-text-icon',
+                                                    icon: '/images/icons/application_edit.png',  cls:'x-btn-text-icon',
                                                     handler: approver.app.editAppTree
                                                 }, '-',
                                                 {
                                                     xtype: 'tbbutton',
                                                     text: 'DETAILS',
-                                                    icon: '<?=base_url()?>images/icons/chart_bar.png',  cls:'x-btn-text-icon',
+                                                    icon: '/images/icons/chart_bar.png',  cls:'x-btn-text-icon',
                                                     handler: approver.app.showAppTreeDetailsGrid
                                                 }
  			 ]

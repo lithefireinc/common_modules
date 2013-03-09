@@ -132,7 +132,7 @@
  					 	},{
  					     	xtype: 'tbbutton',
  					     	text: 'ADD',
-							icon: '<?=base_url()?>images/icons/application_add.png',
+							icon: '/images/icons/application_add.png',
  							cls:'x-btn-text-icon',
 
  					     	handler: hrisv2_my_whereabouts.app.hrisv2_my_dtrAdd
@@ -140,7 +140,7 @@
  					 	},'-',{
  					     	xtype: 'tbbutton',
  					     	text: 'EDIT',
-							icon: '<?=base_url()?>images/icons/application_edit.png',
+							icon: '/images/icons/application_edit.png',
  							cls:'x-btn-text-icon',
 
  					     	handler: hrisv2_my_whereabouts.app.hrisv2_my_dtrEdit
@@ -148,7 +148,7 @@
  					 	},'-',{
  					     	xtype: 'tbbutton',
  					     	text: 'DELETE',
-							icon: '<?=base_url()?>images/icons/application_delete.png',
+							icon: '/images/icons/application_delete.png',
  							cls:'x-btn-text-icon',
 
  					     	handler: hrisv2_my_whereabouts.app.hrisv2_my_dtrDelete

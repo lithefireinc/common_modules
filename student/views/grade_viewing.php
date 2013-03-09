@@ -274,7 +274,7 @@
  		        ],
                         buttons: [{
  		         	text: 'Load Grades',
-                                icon: '<?=base_url()?>images/icons/arrow_rotate_clockwise.png',
+                                icon: '/images/icons/arrow_rotate_clockwise.png',
  	                handler: function () {
                             if(ExtCommon.util.validateFormFields(_form)){//check if all forms are filled up
                             gradeView.app.Grid.getStore().reload({params:{studentId: Ext.getCmp('student').getValue()}});
@@ -491,7 +491,7 @@
  		        ],
                         buttons: [{
  		         	text: 'Load Grades',
-                                icon: '<?=base_url()?>images/icons/arrow_rotate_clockwise.png',
+                                icon: '/images/icons/arrow_rotate_clockwise.png',
  	                handler: function () {
                             if(ExtCommon.util.validateFormFields(teacherForm)){//check if all forms are filled up
                             gradeView.app.teacherGrid.getStore().load();
@@ -683,7 +683,7 @@
  		        ],
                         buttons: [{
  		         	text: 'Load Grades',
-                                icon: '<?=base_url()?>images/icons/arrow_rotate_clockwise.png',
+                                icon: '/images/icons/arrow_rotate_clockwise.png',
  	                handler: function () {
                             if(ExtCommon.util.validateFormFields(subjectForm)){//check if all forms are filled up
                             

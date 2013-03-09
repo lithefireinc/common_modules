@@ -10,7 +10,7 @@
 
         <title><?php echo $title?></title>
 
-		<link href= "/dev/ogs/css/ui_mainpage.css" rel="stylesheet" type="text/css" />
+		<link href= "/css/ogs/ui_mainpage.css" rel="stylesheet" type="text/css" />
 
 <!--[if lt IE 8]>
 

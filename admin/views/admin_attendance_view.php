@@ -342,7 +342,7 @@
  		        ],
                         buttons: [{
  		         	text: 'Load Attendance',
-                                icon: '<?=base_url()?>images/icons/arrow_rotate_clockwise.png',
+                                icon: '/images/icons/arrow_rotate_clockwise.png',
  	                handler: function () {
                             if(ExtCommon.util.validateFormFields(_form)){//check if all forms are filled up
                             ogs_admin_attendance_view.app.Grid.getStore().load();
@@ -650,7 +650,7 @@
  		        ],
                         buttons: [{
  		         	text: 'Load Attendance',
-                                icon: '<?=base_url()?>images/icons/arrow_rotate_clockwise.png',
+                                icon: '/images/icons/arrow_rotate_clockwise.png',
  	                handler: function () {
                             if(ExtCommon.util.validateFormFields(teacherForm)){//check if all forms are filled up
                             ogs_admin_attendance_view.app.teacherGrid.getStore().load();
@@ -924,7 +924,7 @@
  		        ],
                         buttons: [{
  		         	text: 'Load Students',
-                                icon: '<?=base_url()?>images/icons/arrow_rotate_clockwise.png',
+                                icon: '/images/icons/arrow_rotate_clockwise.png',
  	                handler: function () {
                             if(ExtCommon.util.validateFormFields(subjectForm)){//check if all forms are filled up
                             

@@ -107,7 +107,7 @@
  					 	},{
  					     	xtype: 'tbbutton',
  					     	text: 'VIEW',
-							icon: '<?=base_url()?>images/icons/application_form_magnify.png',
+							icon: '/images/icons/application_form_magnify.png',
  							cls:'x-btn-text-icon',
 
  					     	handler: suspension.app.suspensionEdit
@@ -275,7 +275,7 @@ var _window = new Ext.Panel({
  		        items: suspension.app.Form,
  		        buttons: [{
  		         	text: 'Save',
-                                icon: '<?=base_url()?>images/icons/disk.png',  cls:'x-btn-text-icon',
+                                icon: '/images/icons/disk.png',  cls:'x-btn-text-icon',
 
  	                handler: function () {
  			            if(ExtCommon.util.validateFormFields(suspension.app.Form)){//check if all forms are filled up
@@ -306,7 +306,7 @@ var _window = new Ext.Panel({
  	                }
  	            },{
  		            text: 'Cancel',
-                            icon: '<?=base_url()?>images/icons/cancel.png', cls:'x-btn-text-icon',
+                            icon: '/images/icons/cancel.png', cls:'x-btn-text-icon',
 
  		            handler: function(){
  			            _window.destroy();
@@ -335,7 +335,7 @@ var _window = new Ext.Panel({
  		        items: suspension.app.Form,
  		        buttons: [{
  		            text: 'Close',
-                            icon: '<?=base_url()?>images/icons/cancel.png', cls:'x-btn-text-icon',
+                            icon: '/images/icons/cancel.png', cls:'x-btn-text-icon',
 
  		            handler: function(){
  			            _window.destroy();

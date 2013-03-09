@@ -461,7 +461,7 @@
           					           // anchor:'95%'  // anchor width by percentage
 
           			            },*/ {xtype: 'button', text: 'Add Picture',
-                                                    icon: '<?=base_url()?>images/icons/picture_add.png',
+                                                    icon: '/images/icons/picture_add.png',
           	 	 			        	handler: function () {
                                                                     var attform = new Ext.form.FormPanel({
 											id: 'atthform',
@@ -506,7 +506,7 @@
 											buttons: [
 												{
 													text: "Upload",
-													icon: '<?=base_url()?>images/icons/picture_save.png',
+													icon: '/images/icons/picture_save.png',
 cls:'x-btn-text-icon',
 
 													handler: function(){
@@ -550,7 +550,7 @@ cls:'x-btn-text-icon',
 													}
 												},{
 													text: "Cancel",
-													icon: '<?=base_url()?>images/icons/cancel.png',
+													icon: '/images/icons/cancel.png',
                                                                                                         cls:'x-btn-text-icon',
 
 													handler: function() {
@@ -606,7 +606,7 @@ cls:'x-btn-text-icon',
  		        items: studentProfile.app.Form,
  		        buttons: [{
  		         	text: 'Save',
-                                 icon: '<?=base_url()?>images/icons/disk.png',
+                                 icon: '/images/icons/disk.png',
  	                handler: function () {
  			            if(ExtCommon.util.validateFormFields(studentProfile.app.Form)){//check if all forms are filled up
 
@@ -636,7 +636,7 @@ cls:'x-btn-text-icon',
  	                }
  	            },{
  		            text: 'Cancel',
-                             icon: '<?=base_url()?>images/icons/cancel.png',
+                             icon: '/images/icons/cancel.png',
  		            handler: function(){
  			            _window.destroy();
  		            }
@@ -677,7 +677,7 @@ cls:'x-btn-text-icon',
  		        items: studentProfile.app.Form,
  		        buttons: [{
  		         	text: 'Save',
-                                icon: '<?=base_url()?>images/icons/disk.png',
+                                icon: '/images/icons/disk.png',
  		            handler: function () {
  			            if(ExtCommon.util.validateFormFields(studentProfile.app.Form)){//check if all forms are filled up
  		                studentProfile.app.Form.getForm().submit({
@@ -703,7 +703,7 @@ cls:'x-btn-text-icon',
  		            }
  		        },{
  		            text: 'Cancel',
-                            icon: '<?=base_url()?>images/icons/cancel.png',
+                            icon: '/images/icons/cancel.png',
  		            handler: function(){
  			            _window.destroy();
  		            }
@@ -1058,7 +1058,7 @@ cls:'x-btn-text-icon',
  		        items: form,
  		        buttons: [{
  		         	text: 'Save',
-                                icon: '<?=base_url()?>images/icons/disk.png',
+                                icon: '/images/icons/disk.png',
  		            handler: function () {
  			            if(ExtCommon.util.validateFormFields(form)){//check if all forms are filled up
  		                form.getForm().submit({
@@ -1084,7 +1084,7 @@ cls:'x-btn-text-icon',
  		            }
  		        },{
  		            text: 'Cancel',
-                            icon: '<?=base_url()?>images/icons/cancel.png',
+                            icon: '/images/icons/cancel.png',
  		            handler: function(){
  			            _window.destroy();
  		            }

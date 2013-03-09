@@ -146,13 +146,13 @@ if(ExtCommon.util.validateSelectionGrid(approver.app.empGroupGrid.getId())){//ch
                                                 {
                                                     xtype: 'tbbutton',
                                                     text: 'ADD',
-                                                    icon: '<?=base_url()?>images/icons/group_add.png',  cls:'x-btn-text-icon',
+                                                    icon: '/images/icons/group_add.png',  cls:'x-btn-text-icon',
                                                     handler: approver.app.addEmpGroupMember
                                                 }, '-',
                                                 {
                                                     xtype: 'tbbutton',
                                                     text: 'EXPIRE',
-                                                    icon: '<?=base_url()?>images/icons/group_delete.png',  cls:'x-btn-text-icon',
+                                                    icon: '/images/icons/group_delete.png',  cls:'x-btn-text-icon',
                                                     handler: approver.app.expireEmpGroupMember
                                                 }
  	    			 ]
@@ -343,7 +343,7 @@ if(ExtCommon.util.validateSelectionGrid(approver.app.empGroupGrid.getId())){//ch
                                                 {
                                                     xtype: 'tbbutton',
                                                     text: 'ADD',
-                                                    icon: '<?=base_url()?>images/icons/chart_organisation_add.png',  cls:'x-btn-text-icon',
+                                                    icon: '/images/icons/chart_organisation_add.png',  cls:'x-btn-text-icon',
                                                     handler: approver.app.addAppFlow
                                                 },/* '-',
                                                 {
@@ -354,7 +354,7 @@ if(ExtCommon.util.validateSelectionGrid(approver.app.empGroupGrid.getId())){//ch
                                                 {
                                                     xtype: 'tbbutton',
                                                     text: 'DELETE',
-                                                    icon: '<?=base_url()?>images/icons/chart_organisation_delete.png',  cls:'x-btn-text-icon',
+                                                    icon: '/images/icons/chart_organisation_delete.png',  cls:'x-btn-text-icon',
                                                     handler: approver.app.deleteAppFlow
                                                 }
  	    			 ]
@@ -586,7 +586,7 @@ editEmpGroup: function(){
  		        items: approver.app.Form,
  		        buttons: [{
  		         	text: 'Save',
-                                icon: '<?=base_url()?>images/icons/disk.png',  cls:'x-btn-text-icon',
+                                icon: '/images/icons/disk.png',  cls:'x-btn-text-icon',
 
  		            handler: function () {
  			            if(ExtCommon.util.validateFormFields(approver.app.Form)){//check if all forms are filled up
@@ -613,7 +613,7 @@ editEmpGroup: function(){
  		            }
  		        },{
  		            text: 'Cancel',
-                            icon: '<?=base_url()?>images/icons/cancel.png', cls:'x-btn-text-icon',
+                            icon: '/images/icons/cancel.png', cls:'x-btn-text-icon',
 
  		            handler: function(){
  			            _window.destroy();

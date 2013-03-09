@@ -87,7 +87,7 @@
  					 	},{
  					     	xtype: 'tbbutton',
  					     	text: 'ADD',
-							icon: '<?=base_url()?>images/icons/application_add.png',
+							icon: '/images/icons/application_add.png',
  							cls:'x-btn-text-icon',
 
  					     	handler: admin_setup.app.Add
@@ -95,7 +95,7 @@
  					 	},{
  					     	xtype: 'tbbutton',
  					     	text: 'SAVE',
-							icon: '<?=base_url()?>images/icons/disk.png',
+							icon: '/images/icons/disk.png',
  							cls:'x-btn-text-icon',
 
  					     	handler: function(){
@@ -135,7 +135,7 @@
  					 	}/*,'-',{
  					     	xtype: 'tbbutton',
  					     	text: 'EDIT',
-							icon: '<?=base_url()?>images/icons/application_edit.png',
+							icon: '/images/icons/application_edit.png',
  							cls:'x-btn-text-icon',
 
  					     	handler: admin_setup.app.Edit
@@ -143,7 +143,7 @@
  					 	},'-',{
  					     	xtype: 'tbbutton',
  					     	text: 'DELETE',
-							icon: '<?=base_url()?>images/icons/application_delete.png',
+							icon: '/images/icons/application_delete.png',
  							cls:'x-btn-text-icon',
 
  					     	handler: admin_setup.app.Delete
@@ -269,7 +269,7 @@ var tabs = new Ext.TabPanel({
  		        items: admin_setup.app.Form,
  		        buttons: [{
  		         	text: 'Save',
-                                icon: '<?=base_url()?>images/icons/disk.png',  cls:'x-btn-text-icon',
+                                icon: '/images/icons/disk.png',  cls:'x-btn-text-icon',
 
  	                handler: function () {
  			            if(ExtCommon.util.validateFormFields(admin_setup.app.Form)){//check if all forms are filled up
@@ -300,7 +300,7 @@ var tabs = new Ext.TabPanel({
  	                }
  	            },{
  		            text: 'Cancel',
-                            icon: '<?=base_url()?>images/icons/cancel.png', cls:'x-btn-text-icon',
+                            icon: '/images/icons/cancel.png', cls:'x-btn-text-icon',
 
  		            handler: function(){
  			            _window.destroy();
@@ -329,7 +329,7 @@ var tabs = new Ext.TabPanel({
  		        items: admin_setup.app.Form,
  		        buttons: [{
  		         	text: 'Save',
-                                icon: '<?=base_url()?>images/icons/disk.png',  cls:'x-btn-text-icon',
+                                icon: '/images/icons/disk.png',  cls:'x-btn-text-icon',
 
  		            handler: function () {
  			            if(ExtCommon.util.validateFormFields(admin_setup.app.Form)){//check if all forms are filled up
@@ -356,7 +356,7 @@ var tabs = new Ext.TabPanel({
  		            }
  		        },{
  		            text: 'Cancel',
-                            icon: '<?=base_url()?>images/icons/cancel.png', cls:'x-btn-text-icon',
+                            icon: '/images/icons/cancel.png', cls:'x-btn-text-icon',
 
  		            handler: function(){
  			            _window.destroy();

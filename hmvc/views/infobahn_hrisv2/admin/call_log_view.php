@@ -79,7 +79,7 @@
  					 	},{
  					     	xtype: 'tbbutton',
  					     	text: 'ADD',
-							icon: '<?=base_url()?>images/icons/application_add.png',
+							icon: '/images/icons/application_add.png',
  							cls:'x-btn-text-icon',
 
  					     	handler: call_log.app.Add
@@ -87,7 +87,7 @@
  					 	},'-',{
  					     	xtype: 'tbbutton',
  					     	text: 'EDIT',
-							icon: '<?=base_url()?>images/icons/application_edit.png',
+							icon: '/images/icons/application_edit.png',
  							cls:'x-btn-text-icon',
 
  					     	handler: call_log.app.Edit
@@ -95,7 +95,7 @@
  					 	},'-',{
  					     	xtype: 'tbbutton',
  					     	text: 'DELETE',
-							icon: '<?=base_url()?>images/icons/application_delete.png',
+							icon: '/images/icons/application_delete.png',
  							cls:'x-btn-text-icon',
 
  					     	handler: call_log.app.Delete
@@ -165,7 +165,7 @@
  					 	},{
  					     	xtype: 'tbbutton',
  					     	text: 'ADD',
-							icon: '<?=base_url()?>images/icons/application_add.png',
+							icon: '/images/icons/application_add.png',
  							cls:'x-btn-text-icon',
 
  					     	handler: call_log.app.memoAdd
@@ -173,7 +173,7 @@
  					 	},'-',{
  					     	xtype: 'tbbutton',
  					     	text: 'EDIT',
-							icon: '<?=base_url()?>images/icons/application_edit.png',
+							icon: '/images/icons/application_edit.png',
  							cls:'x-btn-text-icon',
 
  					     	handler: call_log.app.memoEdit
@@ -181,7 +181,7 @@
  					 	},'-',{
  					     	xtype: 'tbbutton',
  					     	text: 'DELETE',
-							icon: '<?=base_url()?>images/icons/application_delete.png',
+							icon: '/images/icons/application_delete.png',
  							cls:'x-btn-text-icon',
 
  					     	handler: call_log.app.memoDelete
@@ -248,7 +248,7 @@
  					 	},{
  					     	xtype: 'tbbutton',
  					     	text: 'ADD',
-							icon: '<?=base_url()?>images/icons/application_add.png',
+							icon: '/images/icons/application_add.png',
  							cls:'x-btn-text-icon',
 
  					     	handler: call_log.app.notificationAdd
@@ -256,7 +256,7 @@
  					 	},'-',{
  					     	xtype: 'tbbutton',
  					     	text: 'EDIT',
-							icon: '<?=base_url()?>images/icons/application_edit.png',
+							icon: '/images/icons/application_edit.png',
  							cls:'x-btn-text-icon',
 
  					     	handler: call_log.app.notificationEdit
@@ -264,7 +264,7 @@
  					 	},'-',{
  					     	xtype: 'tbbutton',
  					     	text: 'DELETE',
-							icon: '<?=base_url()?>images/icons/application_delete.png',
+							icon: '/images/icons/application_delete.png',
  							cls:'x-btn-text-icon',
 
  					     	handler: call_log.app.notificationDelete
@@ -337,7 +337,7 @@
  					 	},{
  					     	xtype: 'tbbutton',
  					     	text: 'ADD',
-							icon: '<?=base_url()?>images/icons/application_add.png',
+							icon: '/images/icons/application_add.png',
  							cls:'x-btn-text-icon',
 
  					     	handler: call_log.app.suspensionAdd
@@ -345,7 +345,7 @@
  					 	},'-',{
  					     	xtype: 'tbbutton',
  					     	text: 'EDIT',
-							icon: '<?=base_url()?>images/icons/application_edit.png',
+							icon: '/images/icons/application_edit.png',
  							cls:'x-btn-text-icon',
 
  					     	handler: call_log.app.suspensionEdit
@@ -353,7 +353,7 @@
  					 	},'-',{
  					     	xtype: 'tbbutton',
  					     	text: 'DELETE',
-							icon: '<?=base_url()?>images/icons/application_delete.png',
+							icon: '/images/icons/application_delete.png',
  							cls:'x-btn-text-icon',
 
  					     	handler: call_log.app.suspensionDelete
@@ -517,7 +517,7 @@ var _window = new Ext.Panel({
  		        items: call_log.app.Form,
  		        buttons: [{
  		         	text: 'Save',
-                                icon: '<?=base_url()?>images/icons/disk.png',  cls:'x-btn-text-icon',
+                                icon: '/images/icons/disk.png',  cls:'x-btn-text-icon',
 
  	                handler: function () {
  			            if(ExtCommon.util.validateFormFields(call_log.app.Form)){//check if all forms are filled up
@@ -548,7 +548,7 @@ var _window = new Ext.Panel({
  	                }
  	            },{
  		            text: 'Cancel',
-                            icon: '<?=base_url()?>images/icons/cancel.png', cls:'x-btn-text-icon',
+                            icon: '/images/icons/cancel.png', cls:'x-btn-text-icon',
 
  		            handler: function(){
  			            _window.destroy();
@@ -577,7 +577,7 @@ var _window = new Ext.Panel({
  		        items: call_log.app.Form,
  		        buttons: [{
  		         	text: 'Save',
-                                icon: '<?=base_url()?>images/icons/disk.png',  cls:'x-btn-text-icon',
+                                icon: '/images/icons/disk.png',  cls:'x-btn-text-icon',
 
  		            handler: function () {
  			            if(ExtCommon.util.validateFormFields(call_log.app.Form)){//check if all forms are filled up
@@ -604,7 +604,7 @@ var _window = new Ext.Panel({
  		            }
  		        },{
  		            text: 'Cancel',
-                            icon: '<?=base_url()?>images/icons/cancel.png', cls:'x-btn-text-icon',
+                            icon: '/images/icons/cancel.png', cls:'x-btn-text-icon',
 
  		            handler: function(){
  			            _window.destroy();

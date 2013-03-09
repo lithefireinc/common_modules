@@ -144,13 +144,13 @@ if(ExtCommon.util.validateSelectionGrid(approver.app.appTreeGrid.getId())){//che
                                                 {
                                                     xtype: 'tbbutton',
                                                     text: 'ADD',
-                                                    icon: '<?=base_url()?>images/icons/chart_bar_add.png',  cls:'x-btn-text-icon',
+                                                    icon: '/images/icons/chart_bar_add.png',  cls:'x-btn-text-icon',
                                                     handler: approver.app.addAppTreeDetail
                                                 }, '-',
                                                 {
                                                     xtype: 'tbbutton',
                                                     text: 'DELETE',
-                                                    icon: '<?=base_url()?>images/icons/chart_bar_delete.png',  cls:'x-btn-text-icon',
+                                                    icon: '/images/icons/chart_bar_delete.png',  cls:'x-btn-text-icon',
                                                     handler: approver.app.deleteAppTreeDetail
                                                 }
  	    			 ]

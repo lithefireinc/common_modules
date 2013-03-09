@@ -107,7 +107,7 @@
  					 	},{
  					     	xtype: 'tbbutton',
  					     	text: 'ADD',
-							icon: '<?=base_url()?>images/icons/application_add.png',
+							icon: '/images/icons/application_add.png',
  							cls:'x-btn-text-icon',
 
  					     	handler: ogs_parents.app.Add
@@ -115,7 +115,7 @@
  					 	},'-',{
  					     	xtype: 'tbbutton',
  					     	text: 'EDIT',
-							icon: '<?=base_url()?>images/icons/application_edit.png',
+							icon: '/images/icons/application_edit.png',
  							cls:'x-btn-text-icon',
 
  					     	handler: ogs_parents.app.Edit
@@ -123,7 +123,7 @@
  					 	},'-',{
  					     	xtype: 'tbbutton',
  					     	text: 'DELETE',
-							icon: '<?=base_url()?>images/icons/application_delete.png',
+							icon: '/images/icons/application_delete.png',
  							cls:'x-btn-text-icon',
 
  					     	handler: ogs_parents.app.Delete
@@ -289,7 +289,7 @@
           					id: "upload_btn",
           					disabled: true,
           					style: {marginTop: '16.5px'},
-                                                    icon: '<?=base_url()?>images/icons/picture_add.png',
+                                                    icon: '/images/icons/picture_add.png',
           	 	 			        	handler: function () {
                                                                     var attform = new Ext.form.FormPanel({
 											id: 'atthform',
@@ -333,7 +333,7 @@
 											buttons: [
 												{
 													text: "Upload",
-													icon: '<?=base_url()?>images/icons/picture_save.png',
+													icon: '/images/icons/picture_save.png',
 cls:'x-btn-text-icon',
 
 													handler: function(){
@@ -377,7 +377,7 @@ cls:'x-btn-text-icon',
 													}
 												},{
 													text: "Cancel",
-													icon: '<?=base_url()?>images/icons/cancel.png',
+													icon: '/images/icons/cancel.png',
                                                                                                         cls:'x-btn-text-icon',
 
 													handler: function() {
@@ -427,7 +427,7 @@ cls:'x-btn-text-icon',
  		        items: ogs_parents.app.Form,
  		        buttons: [{
  		         	text: 'Save',
-                                icon: '<?=base_url()?>images/icons/disk.png',  cls:'x-btn-text-icon',
+                                icon: '/images/icons/disk.png',  cls:'x-btn-text-icon',
 
  	                handler: function () {
  			            if(ExtCommon.util.validateFormFields(ogs_parents.app.Form)){//check if all forms are filled up
@@ -458,7 +458,7 @@ cls:'x-btn-text-icon',
  	                }
  	            },{
  		            text: 'Cancel',
-                            icon: '<?=base_url()?>images/icons/cancel.png', cls:'x-btn-text-icon',
+                            icon: '/images/icons/cancel.png', cls:'x-btn-text-icon',
 
  		            handler: function(){
  			            _window.destroy();
@@ -487,7 +487,7 @@ cls:'x-btn-text-icon',
  		        items: ogs_parents.app.Form,
  		        buttons: [{
  		         	text: 'Save',
-                                icon: '<?=base_url()?>images/icons/disk.png',  cls:'x-btn-text-icon',
+                                icon: '/images/icons/disk.png',  cls:'x-btn-text-icon',
 
  		            handler: function () {
  			            if(ExtCommon.util.validateFormFields(ogs_parents.app.Form)){//check if all forms are filled up
@@ -514,7 +514,7 @@ cls:'x-btn-text-icon',
  		            }
  		        },{
  		            text: 'Cancel',
-                            icon: '<?=base_url()?>images/icons/cancel.png', cls:'x-btn-text-icon',
+                            icon: '/images/icons/cancel.png', cls:'x-btn-text-icon',
 
  		            handler: function(){
  			            _window.destroy();

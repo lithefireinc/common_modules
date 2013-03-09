@@ -144,7 +144,7 @@
  					     	xtype: 'tbfill'
  					 	},
  					 	{xtype: 'button', text: 'UPLOAD EXCEL',
-                                                    icon: '<?=base_url()?>images/icons/picture_add.png',
+                                                    icon: '/images/icons/picture_add.png',
           	 	 			        	handler: function () {
                                                                     var attform = new Ext.form.FormPanel({
 											id: 'atthform',
@@ -193,7 +193,7 @@
 											buttons: [
 												{
 													text: "Upload",
-													icon: '<?=base_url()?>images/icons/picture_save.png',
+													icon: '/images/icons/picture_save.png',
 cls:'x-btn-text-icon',
 
 													handler: function(){
@@ -237,7 +237,7 @@ cls:'x-btn-text-icon',
 													}
 												},{
 													text: "Cancel",
-													icon: '<?=base_url()?>images/icons/cancel.png',
+													icon: '/images/icons/cancel.png',
                                                                                                         cls:'x-btn-text-icon',
 
 													handler: function() {
@@ -339,7 +339,7 @@ var _window = new Ext.Panel({
  		        items: hrisv2_my_dtr.app.Form,
  		        buttons: [{
  		         	text: 'Save',
-                                icon: '<?=base_url()?>images/icons/disk.png',  cls:'x-btn-text-icon',
+                                icon: '/images/icons/disk.png',  cls:'x-btn-text-icon',
 
  	                handler: function () {
  			            if(ExtCommon.util.validateFormFields(hrisv2_my_dtr.app.Form)){//check if all forms are filled up
@@ -370,7 +370,7 @@ var _window = new Ext.Panel({
  	                }
  	            },{
  		            text: 'Cancel',
-                            icon: '<?=base_url()?>images/icons/cancel.png', cls:'x-btn-text-icon',
+                            icon: '/images/icons/cancel.png', cls:'x-btn-text-icon',
 
  		            handler: function(){
  			            _window.destroy();
@@ -399,7 +399,7 @@ var _window = new Ext.Panel({
  		        items: hrisv2_my_dtr.app.Form,
  		        buttons: [/*{
  		         	text: 'Save',
-                                icon: '<?=base_url()?>images/icons/disk.png',  cls:'x-btn-text-icon',
+                                icon: '/images/icons/disk.png',  cls:'x-btn-text-icon',
 
  		            handler: function () {
  			            if(ExtCommon.util.validateFormFields(hrisv2_my_dtr.app.Form)){//check if all forms are filled up
@@ -426,7 +426,7 @@ var _window = new Ext.Panel({
  		            }
  		        },*/{
  		            text: 'Close',
-                            icon: '<?=base_url()?>images/icons/cancel.png', cls:'x-btn-text-icon',
+                            icon: '/images/icons/cancel.png', cls:'x-btn-text-icon',
 
  		            handler: function(){
  			            _window.destroy();

@@ -106,7 +106,7 @@
  					 	},{
  					     	xtype: 'tbbutton',
  					     	text: 'ADD',
-							icon: '<?=base_url()?>images/icons/application_add.png',
+							icon: '/images/icons/application_add.png',
  							cls:'x-btn-text-icon',
 
  					     	handler: ogs_grade_entry_restriction.app.Add
@@ -114,7 +114,7 @@
  					 	},'-',{
  					     	xtype: 'tbbutton',
  					     	text: 'EDIT',
-							icon: '<?=base_url()?>images/icons/application_edit.png',
+							icon: '/images/icons/application_edit.png',
  							cls:'x-btn-text-icon',
 
  					     	handler: ogs_grade_entry_restriction.app.Edit
@@ -122,7 +122,7 @@
  					 	},'-',{
  					     	xtype: 'tbbutton',
  					     	text: 'DELETE',
-							icon: '<?=base_url()?>images/icons/application_delete.png',
+							icon: '/images/icons/application_delete.png',
  							cls:'x-btn-text-icon',
 
  					     	handler: ogs_grade_entry_restriction.app.Delete
@@ -273,7 +273,7 @@
  		        items: ogs_grade_entry_restriction.app.Form,
  		        buttons: [{
  		         	text: 'Save',
-                                icon: '<?=base_url()?>images/icons/disk.png',  cls:'x-btn-text-icon',
+                                icon: '/images/icons/disk.png',  cls:'x-btn-text-icon',
 
  	                handler: function () {
  			            if(ExtCommon.util.validateFormFields(ogs_grade_entry_restriction.app.Form)){//check if all forms are filled up
@@ -304,7 +304,7 @@
  	                }
  	            },{
  		            text: 'Cancel',
-                            icon: '<?=base_url()?>images/icons/cancel.png', cls:'x-btn-text-icon',
+                            icon: '/images/icons/cancel.png', cls:'x-btn-text-icon',
 
  		            handler: function(){
  			            _window.destroy();
@@ -333,7 +333,7 @@
  		        items: ogs_grade_entry_restriction.app.Form,
  		        buttons: [{
  		         	text: 'Save',
-                                icon: '<?=base_url()?>images/icons/disk.png',  cls:'x-btn-text-icon',
+                                icon: '/images/icons/disk.png',  cls:'x-btn-text-icon',
 
  		            handler: function () {
  			            if(ExtCommon.util.validateFormFields(ogs_grade_entry_restriction.app.Form)){//check if all forms are filled up
@@ -360,7 +360,7 @@
  		            }
  		        },{
  		            text: 'Cancel',
-                            icon: '<?=base_url()?>images/icons/cancel.png', cls:'x-btn-text-icon',
+                            icon: '/images/icons/cancel.png', cls:'x-btn-text-icon',
 
  		            handler: function(){
  			            edit_window.destroy();

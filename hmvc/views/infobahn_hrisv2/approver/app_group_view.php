@@ -177,13 +177,13 @@ if(ExtCommon.util.validateSelectionGrid(approver.app.appGroupGrid.getId())){//ch
                                                 {
                                                     xtype: 'tbbutton',
                                                     text: 'ADD',
-                                                    icon: '<?=base_url()?>images/icons/group_add.png',  cls:'x-btn-text-icon',
+                                                    icon: '/images/icons/group_add.png',  cls:'x-btn-text-icon',
                                                     handler: approver.app.addAppGroupMember
                                                 }, '-',
                                                 {
                                                     xtype: 'tbbutton',
                                                     text: 'EXPIRE',
-                                                    icon: '<?=base_url()?>images/icons/group_delete.png',  cls:'x-btn-text-icon',
+                                                    icon: '/images/icons/group_delete.png',  cls:'x-btn-text-icon',
                                                     handler: approver.app.expireAppGroupMember
                                                 }
  	    			 ]
@@ -306,7 +306,7 @@ editAppGroup: function(){
  		        items: approver.app.Form,
  		        buttons: [{
  		         	text: 'Save',
-                                icon: '<?=base_url()?>images/icons/disk.png',  cls:'x-btn-text-icon',
+                                icon: '/images/icons/disk.png',  cls:'x-btn-text-icon',
 
  		            handler: function () {
  			            if(ExtCommon.util.validateFormFields(approver.app.Form)){//check if all forms are filled up
@@ -333,7 +333,7 @@ editAppGroup: function(){
  		            }
  		        },{
  		            text: 'Cancel',
-                            icon: '<?=base_url()?>images/icons/cancel.png', cls:'x-btn-text-icon',
+                            icon: '/images/icons/cancel.png', cls:'x-btn-text-icon',
 
  		            handler: function(){
  			            _window.destroy();

@@ -100,7 +100,7 @@
  					 	},{
  					     	xtype: 'tbbutton',
  					     	text: 'EDIT USER NAME',
-							icon: '<?=base_url()?>images/icons/user_edit.png',
+							icon: '/images/icons/user_edit.png',
  							cls:'x-btn-text-icon',
 
  					     	handler: hrisv2_user_admin.app.Edit
@@ -108,7 +108,7 @@
  					 	},{
  					     	xtype: 'tbbutton',
  					     	text: 'CHANGE PASSWORD',
-							icon: '<?=base_url()?>images/icons/lock_edit.png',
+							icon: '/images/icons/lock_edit.png',
  							cls:'x-btn-text-icon',
 
  					     	handler: hrisv2_user_admin.app.changePassword

@@ -970,7 +970,7 @@ var forceLeaveStore = new Ext.data.Store({
  					 	},{
  					     	xtype: 'tbbutton',
  					     	text: 'VIEW',
-							icon: '<?=base_url()?>images/icons/application_edit.png',
+							icon: '/images/icons/application_edit.png',
  							cls:'x-btn-text-icon',
 
  					     	handler: requests.app.viewForceLeave

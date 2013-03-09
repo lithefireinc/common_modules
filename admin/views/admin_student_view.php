@@ -226,7 +226,7 @@
  		        ],
                         buttons: [{
  		         	text: 'Load Students',
-                                icon: '<?=base_url()?>images/icons/arrow_rotate_clockwise.png',
+                                icon: '/images/icons/arrow_rotate_clockwise.png',
  	                handler: function () {
                             if(ExtCommon.util.validateFormFields(_form)){//check if all forms are filled up
                             ogs_student_view.app.Grid.getStore().load({params:{COURIDNO: Ext.get('COURIDNO3').dom.value, SEMEIDNO: Ext.get('SEMEIDNO').dom.value}});
@@ -476,7 +476,7 @@
  		        ],
                         buttons: [{
  		         	text: 'Load Students',
-                                icon: '<?=base_url()?>images/icons/arrow_rotate_clockwise.png',
+                                icon: '/images/icons/arrow_rotate_clockwise.png',
  	                handler: function () {
                             if(ExtCommon.util.validateFormFields(teacherForm)){//check if all forms are filled up
                             ogs_student_view.app.teacherGrid.getStore().load();
@@ -757,7 +757,7 @@
  		        ],
                         buttons: [{
  		         	text: 'Load Students',
-                                icon: '<?=base_url()?>images/icons/arrow_rotate_clockwise.png',
+                                icon: '/images/icons/arrow_rotate_clockwise.png',
  	                handler: function () {
                             if(ExtCommon.util.validateFormFields(subjectForm)){//check if all forms are filled up
                             
