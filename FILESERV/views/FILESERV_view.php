@@ -150,14 +150,6 @@
  					items:[
 				{
                     xtype:'textfield',
- 		            fieldLabel: 'SERVCODE*',
- 		            name: 'SERVCODE',
- 		            allowBlank:false,
- 		            anchor:'95%',  // anchor width by percentage
- 		            id: 'SERVCODE'
- 		        },
-				{
-                    xtype:'textfield',
  		            fieldLabel: 'SERVIDNO*',
  		            name: 'SERVIDNO',
  		            allowBlank:false,
@@ -189,7 +181,7 @@
  		    _window = new Ext.Window({
  		        title: 'New FILESERV',
  		        width: 510,
- 		        height: 205,
+ 		        height: 180,
  		        layout: 'fit',
  		        plain:true,
  		        modal: true,
@@ -247,7 +239,7 @@
  		    _window = new Ext.Window({
  		        title: 'Update Classification',
  		        width: 510,
- 		        height:315,
+ 		        height: 180,
  		        layout: 'fit',
  		        plain:true,
  		        modal: true,

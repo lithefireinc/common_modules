@@ -65,8 +65,11 @@ class FILESERV extends MY_Controller{
 	        $table = "FILESERV";
 			$input = $this->input->post();
 			
+			$input['dcreated'] = date("Y-m-d");
+			$input['created_by'] = $this->session->userData("userName");
+			
 			//uncomment for checking duplicates (change $fieldname)
-			$fieldname = 'description';
+			$fieldname = 'SERVCODE';
 	        if($this->lithefire->countFilteredRows($db, $table, "SERVIDNO = '".$this->input->post("SERVIDNO")."' AND SERVICE = '".$this->input->post("SERVICE")."'", "")){
 	            $data['success'] = false;
 	            $data['data'] = "Record already exists";
@@ -112,7 +115,7 @@ class FILESERV extends MY_Controller{
 			$param = "SERVCODE";
 	        $id=$this->input->post('id');
 	        $filter = "$param = '$id'";
-	
+			
 	        $input = array();
 	        foreach($this->input->post() as $key => $val){
 	            if($key == 'id')
@@ -121,17 +124,19 @@ class FILESERV extends MY_Controller{
 	                $input[$key] = $val;
 	            }
 	        }
+			
+			$input['dmodified'] = date("Y-m-d");
+			$input['modified_by'] = $this->session->userData("userName");
+			
 			//check for duplicates (change $fieldname)
-			$fieldname = 'description';
+			$fieldname = 'SERVIDNO';
 	        if($this->lithefire->countFilteredRows($db, $table, "$fieldname = '".$this->input->post("$fieldname")."' AND SERVCODE != '$id'", "")){
 	            $data['success'] = false;
 	            $data['data'] = "Record already exists";
 	            die(json_encode($data));
 	        }
-	
-	
+			
 	        $data = $this->lithefire->updateRow($db, $table, $input, $filter);
-	
 	
 	        die(json_encode($data));
 	    }
