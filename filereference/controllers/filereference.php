@@ -1,4 +1,5 @@
 <?php
+
 class Filereference extends MY_Controller{
 
     function Filereference(){
@@ -2843,7 +2844,7 @@ class Filereference extends MY_Controller{
     }
 
     function addDays(){
-        
+
         
 		$db = "fr";
         $table = "FILEDAYS";
@@ -4525,9 +4526,9 @@ class Filereference extends MY_Controller{
         $data['title'] = 'Online Grading System';
 
 
-        
+
         $this->layout->view('filereference/employeeStatus_view', $data);
-        
+
     }
 
     function getEmployeeStatus(){
@@ -5273,4 +5274,3 @@ class Filereference extends MY_Controller{
 	        die(json_encode($data));
 	 }
 }
-?>
