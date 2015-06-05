@@ -6,7 +6,7 @@ class EmployeeCategory extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('filereference/EmployeeCategory_m');
+        $this->load->model('EmployeeCategory_m');
 
     }
 
