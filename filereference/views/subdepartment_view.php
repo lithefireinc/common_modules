@@ -178,7 +178,12 @@
                         width:'auto',
                         height:'auto',
                         items:[
-                            {xtype: 'departmentcombo', id: 'department', anchor: '95%'},
+                            {
+                                xtype: 'departmentcombo', id: 'department', anchor: '95%',
+                                name: 'department',
+                                hiddenId: 'department_id',
+                                hiddenName: 'department_id'
+                            },
                             {
                                 xtype:'textfield',
                                 fieldLabel: 'Sub-department*',

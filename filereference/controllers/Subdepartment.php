@@ -1,6 +1,9 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 use filereference\subdepartment_m;
+use Illuminate\Database\Eloquent\Model as Eloquent;
+use \Illuminate\Validation\Factory as Validator;
+use \Symfony\Component\Translation\Translator;
 
 class Subdepartment extends MY_Controller
 {
@@ -60,6 +63,7 @@ class Subdepartment extends MY_Controller
     public function store()
     {
         $subdepartment = new Subdepartment_m;
+        $subdepartment->setRules(array("description"=>"required|unique:filesubdept,description,NULL,id,department_id,".$this->input->post('department_id'),));
         if($subdepartment->validate($this->input->post()))
         {
             $subdepartment->fill($this->input->post());
@@ -74,8 +78,11 @@ class Subdepartment extends MY_Controller
     public function update()
     {
         $id = $this->input->post('id');
+        $department = $this->input->post('department_id');
+
         $subdepartment = Subdepartment_m::findOrFail($id);
-        if($subdepartment->validate($this->input->post(), $id))
+        $subdepartment->setRules(array("description"=>"required|unique:filesubdept,description,$id,id,department_id,$department",));
+        if($subdepartment->validate($this->input->post()))
         {
             $subdepartment->update($this->input->post());
             die(json_encode(["data" => $subdepartment->updatedMsg(), "id" => $subdepartment->id, "success" => true]));
@@ -92,5 +99,50 @@ class Subdepartment extends MY_Controller
         $subdepartment->whereIn("id", $ids["data"])->delete();
         die(json_encode(["success"=>true, "data"=>$subdepartment->deletedMsg()]));
 
+    }
+
+    public function lists()
+    {
+        $query = subdepartment_m::query();
+        $input = $this->input->get();
+
+        $query->where("department_id", "=", $input['department_id']);
+
+        if(isset($input['start']) && isset($input['limit']))
+        {
+            $query->getQuery()->forPage($input['start'], $input['limit']);
+        }
+
+        if(isset($input['query']) && !empty($input['query']))
+        {
+            $query->where("description", "like", "%".$input['query']."%");
+        }
+
+        if(isset($input['sort']))
+        {
+            $query->getQuery()->orderBy($input['sort'], $input['dir']);
+        }
+        $query->select(["id", "description as name"]);
+        $data['data'] = $query->get();
+
+        $data['totalCount'] = $query->getQuery()->count();
+
+        die(json_encode($data));
+    }
+
+    public function validate($data, $id = null)
+    {
+        $ci = &get_instance();
+        $factory = new Validator(new Translator('en'));
+        $v = $factory->make($data, $this->getValidationRules($id), $this->messages);
+        $manager = $ci->db->capsule->getDatabaseManager();
+        $manager->setDefaultConnection('fr');
+        $v->setPresenceVerifier(new \Illuminate\Validation\DatabasePresenceVerifier($manager));
+        if($v->fails())
+        {
+            $this->errors = $v->errors();
+            return false;
+        }
+        return true;
     }
 }

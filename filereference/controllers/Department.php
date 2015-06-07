@@ -20,7 +20,7 @@ class Department extends MY_Controller
             $department->getQuery()->forPage($input['start'], $input['limit']);
         }
 
-        if(isset($input['query']))
+        if(isset($input['query']) && !empty($input['query']))
         {
             $department->where("dept_type", "like", "%".$input['query']."%");
         }
