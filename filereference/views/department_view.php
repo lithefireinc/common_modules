@@ -41,7 +41,7 @@
  				cm:  new Ext.grid.ColumnModel(
  						[
                                                     { header: "Id", width: 75, sortable: true, dataIndex: "dept_idno" },
- 						  { header: "Classification", width: 300, sortable: true, dataIndex: "dept_type" }
+ 						  { header: "Department", width: 300, sortable: true, dataIndex: "dept_type" }
  						]
  				),
  				sm: new Ext.grid.RowSelectionModel({singleSelect:true}),
@@ -122,7 +122,7 @@
  			hrisv2_department.app.Grid.getStore().load({params:{start: 0, limit: 25}});
 
  			var _window = new Ext.Panel({
- 		        title: 'Classification',
+ 		        title: 'Department',
  		        width: '100%',
  		        height:420,
  		        renderTo: 'mainBody',
@@ -159,7 +159,7 @@
                         {
 
                             xtype:'textfield',
- 		            fieldLabel: 'Classification*',
+ 		            fieldLabel: 'Department*',
                             autoCreate : {tag: "input", type: "text", size: "20", autocomplete: "off", maxlength: "47"},
  		            name: 'dept_type',
  		            allowBlank:false,
@@ -181,7 +181,7 @@
  		  	var _window;
 
  		    _window = new Ext.Window({
- 		        title: 'New Classification',
+ 		        title: 'New Department',
  		        width: 510,
  		        height:170,
  		        layout: 'fit',
@@ -241,7 +241,7 @@
 
  			hrisv2_department.app.setForm();
  		    _window = new Ext.Window({
- 		        title: 'Update Classification',
+ 		        title: 'Update Department',
  		        width: 510,
  		        height:170,
  		        layout: 'fit',

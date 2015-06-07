@@ -10,6 +10,14 @@ class Department extends MY_Controller
 
     }
 
+    public function index()
+    {
+        $data['title'] = "Department | HRIS";
+        $data['userId'] = $this->session->userData('userId');
+        $data['userName'] = $this->session->userData('userName');
+        $this->layout->view('filereference/department_view', $data);
+    }
+
     public function lists()
     {
         $department = Department_m::query();
