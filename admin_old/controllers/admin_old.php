@@ -5,12 +5,7 @@ require_once 'PHPExcel177/Classes/PHPExcel.php';
 require_once('tcpdf/config/lang/eng.php');
 require_once('tcpdf/tcpdf.php');
 
-class Admin extends MY_Controller {
-	
-	function Admin(){
-		parent::__construct();
-		
-	}
+class Admin_old extends MY_Controller {
 	
 	function curriculum(){
 		$data['title'] = 'Student Web Portal: Student Profile';
