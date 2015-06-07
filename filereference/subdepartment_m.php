@@ -6,11 +6,11 @@ class Subdepartment_m extends Lithefire_m
 {
     protected $title = "Sub-Department";
     protected $rules = array(
-        "description"=>"required|unique:FILESUBDEPT,description,:id"
+        "description"=>"required|unique:filesubdept,description,:id"
     );
 
     protected $connection = 'fr';
-    protected $table = 'FILESUBDEPT';
+    protected $table = 'filesubdept';
     protected $guarded = array('id');
 
     public function department(){

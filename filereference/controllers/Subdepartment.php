@@ -21,9 +21,10 @@ class Subdepartment extends MY_Controller
     public function getIndex(){
 
         $subdepartment = Subdepartment_m::query();
+
         $input = $this->input->get();
-        $subdepartment->join("filedept", "FILESUBDEPT.department_id", "=", "filedept.dept_idno");
-        $subdepartment->select(["FILESUBDEPT.*", "filedept.dept_type"]);
+        $subdepartment->join("filedept", "filesubdept.department_id", "=", "filedept.dept_idno");
+        $subdepartment->select(["filesubdept.*", "filedept.dept_type"]);
         if(isset($input['start']) && isset($input['limit']))
         {
             $subdepartment->getQuery()->forPage($input['start'], $input['limit']);
@@ -31,7 +32,8 @@ class Subdepartment extends MY_Controller
 
         if(isset($input['query']))
         {
-            $subdepartment->where("description", "like", "%".$input['query']."%");
+            $subdepartment->where("description", "like", "%".$input['query']."%")
+            ->orWhere("dept_type", "like", "%".$input['query']."%");
         }
 
         if(isset($input['sort']))
