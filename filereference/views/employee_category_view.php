@@ -17,7 +17,7 @@
                 var fields = [{ name: 'id'}, { name: 'description'}];
                 var get_url = "<?php echo site_url('filereference/employeeCategory/getIndex') ?>";
                 var sm1 = new Ext.grid.CheckboxSelectionModel({
-                    checkOnly: true,
+                    //checkOnly: true,
                     dataIndex: 'id',
                     listeners: {
                         selectionchange: function (sm){

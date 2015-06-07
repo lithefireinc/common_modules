@@ -1,11 +1,12 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+use filereference\subdepartment_m;
+
 class Subdepartment extends MY_Controller
 {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('filereference/Subdepartment_m');
 
     }
 
@@ -21,7 +22,8 @@ class Subdepartment extends MY_Controller
 
         $subdepartment = Subdepartment_m::query();
         $input = $this->input->get();
-
+        $subdepartment->join("filedept", "FILESUBDEPT.department_id", "=", "filedept.dept_idno");
+        $subdepartment->select(["FILESUBDEPT.*", "filedept.dept_type"]);
         if(isset($input['start']) && isset($input['limit']))
         {
             $subdepartment->getQuery()->forPage($input['start'], $input['limit']);
@@ -47,8 +49,9 @@ class Subdepartment extends MY_Controller
     public function show()
     {
         $id = $this->input->get('id');
+        $subdepartment = Subdepartment_m::findOrFail($id);
 
-        die(json_encode(array("data"=>Subdepartment_m::findOrFail($id)->toArray(), "success"=>true)));
+        die(json_encode(array("data"=>$subdepartment->toArray()+["department_name"=>$subdepartment->department->dept_type], "success"=>true)));
 
     }
 

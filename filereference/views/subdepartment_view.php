@@ -13,10 +13,9 @@
             getGrid: function()
             {
                 ExtCommon.util.renderSearchField('searchby');
-                var fields = [{ name: 'id'}, { name: 'description'}];
+                var fields = [{ name: 'id'}, { name: 'description'}, {name: 'dept_type'}];
                 var get_url = "<?php echo site_url('filereference/subdepartment/getIndex') ?>";
                 var sm1 = new Ext.grid.CheckboxSelectionModel({
-                    checkOnly: true,
                     dataIndex: 'id',
                     listeners: {
                         selectionchange: function (sm){
@@ -36,7 +35,8 @@
                     }
                 });
 
-                var column_model = [sm1, {header: "Id", width: 100, sortable: true, dataIndex: 'id'}, {header: "Sub-department", width: 150, sortable: true, dataIndex: 'description'}];
+                var column_model = [sm1, {header: "Id", width: 100, sortable: true, dataIndex: 'id'}, {header: "Sub-department", width: 150, sortable: true, dataIndex: 'description'},
+                    {header: "Department", width: 150, sortable: true, dataIndex: 'dept_type'}];
                 var title = 'Sub-department';
 
                 var Objstore = new Ext.data.Store({
@@ -178,7 +178,7 @@
                         width:'auto',
                         height:'auto',
                         items:[
-                            {xtype: 'departmentcombo', id: 'department_id', anchor: '95%'},
+                            {xtype: 'departmentcombo', id: 'department', anchor: '95%'},
                             {
                                 xtype:'textfield',
                                 fieldLabel: 'Sub-department*',
@@ -205,7 +205,7 @@
                 _window = new Ext.Window({
                     title: 'New Sub-department',
                     width: 510,
-                    height: 210,
+                    height: 180,
                     layout: 'fit',
                     plain:true,
                     modal: true,
@@ -265,9 +265,9 @@
 
                     subdepartment.app.setForm();
                     _window = new Ext.Window({
-                        title: 'Update Residency Status',
+                        title: 'Update Sub-department',
                         width: 510,
-                        height:160,
+                        height:180,
                         layout: 'fit',
                         plain:true,
                         modal: true,
@@ -285,7 +285,13 @@
                                         params: {id: id},
                                         method: 'POST',
                                         success: function(f,action){
-                                            Ext.MessageBox.alert('Status', action.result.data);
+                                            Ext.Msg.show({
+                                                title: 'Status',
+                                                msg: action.result.data,
+                                                icon: Ext.Msg.INFO,
+                                                buttons: Ext.Msg.OK,
+                                                width: '100%'
+                                            });
                                             ExtCommon.util.refreshGrid(subdepartment.app.Grid.getId());
                                             _window.destroy();
                                         },
@@ -320,6 +326,8 @@
                         waitMsg:'Loading...',
                         success: function(form, action){
                             _window.show();
+                            Ext.getCmp('department').setRawValue(action.result.data.department_name);
+
                         },
                         failure: function(form, action) {
                             Ext.Msg.show({

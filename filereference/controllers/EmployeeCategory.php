@@ -1,12 +1,13 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+use filereference\employeecategory_m;
+
 class EmployeeCategory extends MY_Controller
 {
 
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('EmployeeCategory_m');
 
     }
 

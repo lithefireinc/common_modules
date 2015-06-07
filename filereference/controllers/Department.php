@@ -1,11 +1,12 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+use filereference\department_m;
+
 class Department extends MY_Controller
 {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('filereference/Department_m');
 
     }
 

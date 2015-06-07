@@ -1,4 +1,6 @@
-<?php
+<?php namespace filereference;
+
+use \Lithefire_m;
 
 class EmployeeCategory_m extends Lithefire_m
 {
