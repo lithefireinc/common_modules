@@ -5,14 +5,8 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
 use \Illuminate\Validation\Factory as Validator;
 use \Symfony\Component\Translation\Translator;
 
-class Subdepartment extends MY_Controller
+class subdepartment extends MY_Controller
 {
-    public function __construct()
-    {
-        parent::__construct();
-
-    }
-
     public function index()
     {
         $data['title'] = "Sub-Department | HRIS";
