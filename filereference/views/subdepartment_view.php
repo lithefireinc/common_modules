@@ -14,7 +14,7 @@
             {
                 ExtCommon.util.renderSearchField('searchby');
                 var fields = [{ name: 'id'}, { name: 'description'}, {name: 'dept_type'}];
-                var get_url = "<?php echo site_url('filereference/subdepartment/getIndex') ?>";
+                var get_url = "<?php echo site_url('filereference/Subdepartment/getIndex') ?>";
                 var sm1 = new Ext.grid.CheckboxSelectionModel({
                     dataIndex: 'id',
                     listeners: {
@@ -169,7 +169,7 @@
 
             setForm: function(){
 
-                var store_url = "<?php echo site_url('filereference/subdepartment/store') ?>";
+                var store_url = "<?php echo site_url('filereference/Subdepartment/store') ?>";
 
                 var form = new Ext.form.FormPanel({
                     labelWidth: 150,
@@ -267,8 +267,8 @@
             },
 
             Edit: function(){
-                var update_url = "<?php echo site_url('filereference/subdepartment/update') ?>";
-                var show_url = "<?php echo site_url('filereference/subdepartment/show') ?>";
+                var update_url = "<?php echo site_url('filereference/Subdepartment/update') ?>";
+                var show_url = "<?php echo site_url('filereference/Subdepartment/show') ?>";
                 if(ExtCommon.util.validateSelectionGrid(subdepartment.app.Grid.getId())){//check if user has selected an item in the grid
                     var sm = subdepartment.app.Grid.getSelectionModel().getSelections();
                     var id = sm[0].data.id;
@@ -353,7 +353,7 @@
             },
 
             Delete: function(){
-                var destroy_url = "<?php echo site_url('filereference/subdepartment/destroy') ?>";
+                var destroy_url = "<?php echo site_url('filereference/Subdepartment/destroy') ?>";
 
                 if(ExtCommon.util.validateSelectionGrid(subdepartment.app.Grid.getId())){//check if user has selected an item in the grid
                     var sm = subdepartment.app.Grid.getSelectionModel().getSelections();
