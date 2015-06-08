@@ -15,7 +15,7 @@
             {
                 ExtCommon.util.renderSearchField('searchby');
                 var fields = [{ name: 'id'}, { name: 'description'}];
-                var get_url = "<?php echo site_url('filereference/employeeCategory/getIndex') ?>";
+                var get_url = "<?php echo site_url('filereference/EmployeeCategory/getIndex') ?>";
                 var sm1 = new Ext.grid.CheckboxSelectionModel({
                     //checkOnly: true,
                     dataIndex: 'id',
@@ -165,7 +165,7 @@
 
             setForm: function(){
 
-                var store_url = "<?php echo site_url('filereference/employeeCategory/store') ?>";
+                var store_url = "<?php echo site_url('filereference/EmployeeCategory/store') ?>";
 
                 var form = new Ext.form.FormPanel({
                     labelWidth: 150,
@@ -258,8 +258,8 @@
             },
 
             Edit: function(){
-                var update_url = "<?php echo site_url('filereference/employeeCategory/update') ?>";
-                var show_url = "<?php echo site_url('filereference/employeeCategory/show') ?>";
+                var update_url = "<?php echo site_url('filereference/EmployeeCategory/update') ?>";
+                var show_url = "<?php echo site_url('filereference/EmployeeCategory/show') ?>";
                 if(ExtCommon.util.validateSelectionGrid(employee_category.app.Grid.getId())){//check if user has selected an item in the grid
                     var sm = employee_category.app.Grid.getSelectionModel().getSelections();
                     var id = sm[0].data.id;
@@ -336,7 +336,7 @@
             },
 
             Delete: function(){
-                var destroy_url = "<?php echo site_url('filereference/employeeCategory/destroy') ?>";
+                var destroy_url = "<?php echo site_url('filereference/EmployeeCategory/destroy') ?>";
 
                 if(ExtCommon.util.validateSelectionGrid(employee_category.app.Grid.getId())){//check if user has selected an item in the grid
                     var sm = employee_category.app.Grid.getSelectionModel().getSelections();
