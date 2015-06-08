@@ -140,7 +140,12 @@
                             handler: subdepartment.app.Delete
 
                         }
-                    ]
+                    ],
+                    listeners: {
+                        rowdblclick: function(grid, row, e){
+                            subdepartment.app.Edit();
+                        }
+                    }
                 });
 
                 subdepartment.app.Grid = grid;
