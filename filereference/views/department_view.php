@@ -12,112 +12,20 @@
  		getGrid: function()
  		{
  			ExtCommon.util.renderSearchField('searchby');
+            var fields = [{ name: "dept_idno"},{ name: "dept_type"}];
+            var get_url = "<?php echo site_url('filereference/Department/getIndex') ?>";
+            var columns = [{ header: "Id", width: 75, sortable: true, dataIndex: "dept_idno" },
+                { header: "Department", width: 300, sortable: true, dataIndex: "dept_type" }];
 
- 			var Objstore = new Ext.data.Store({
- 						proxy: new Ext.data.HttpProxy({
- 							url: "<?php echo site_url("filereference/getDepartment")?>",
- 							method: "POST"
- 							}),
- 						reader: new Ext.data.JsonReader({
- 								root: "data",
- 								id: "id",
- 								totalProperty: "totalCount",
- 								fields: [
- 											{ name: "dept_idno"},
- 											{ name: "dept_type"}
- 										]
- 						}),
- 						remoteSort: true,
- 						baseParams: {start: 0, limit: 25}
- 					});
-
-
- 			var grid = new Ext.grid.GridPanel({
- 				id: 'hrisv2_departmentgrid',
- 				height: 300,
- 				width: 900,
- 				border: true,
- 				ds: Objstore,
- 				cm:  new Ext.grid.ColumnModel(
- 						[
-                                                    { header: "Id", width: 75, sortable: true, dataIndex: "dept_idno" },
- 						  { header: "Department", width: 300, sortable: true, dataIndex: "dept_type" }
- 						]
- 				),
- 				sm: new Ext.grid.RowSelectionModel({singleSelect:true}),
- 	        	loadMask: true,
- 	        	bbar:
- 	        		new Ext.PagingToolbar({
- 		        		autoShow: true,
- 				        pageSize: 25,
- 				        store: Objstore,
- 				        displayInfo: true,
- 				        displayMsg: 'Displaying Results {0} - {1} of {2}',
- 				        emptyMsg: "No Data Found."
- 				    }),
- 				tbar: [new Ext.form.ComboBox({
-                    fieldLabel: 'Search',
-                    hiddenName:'searchby-form',
-                    id: 'searchby',
-					//store: Objstore,
-                    typeAhead: true,
-                    triggerAction: 'all',
-                    emptyText:'Search By...',
-                    selectOnFocus:true,
-
-                    store: new Ext.data.SimpleStore({
-				         id:0
-				        ,fields:
-				            [
-				             'myId',   //numeric value is the key
-				             'myText' //the text value is the value
-
-				            ]
-
-
-				         , data: [['id', 'ID'], ['sd', 'Short Description'], ['ld', 'Long Description']]
-
-			        }),
-				    valueField:'myId',
-				    displayField:'myText',
-				    mode:'local',
-                    width:100,
-                    hidden: true
-
-                }), {
-					xtype:'tbtext',
-					text:'Search:'
-				},'   ', new Ext.app.SearchField({ store: Objstore, width:250}),
- 					    {
- 					     	xtype: 'tbfill'
- 					 	},{
- 					     	xtype: 'tbbutton',
- 					     	text: 'ADD',
-							icon: '/images/icons/application_add.png',
- 							cls:'x-btn-text-icon',
-
- 					     	handler: hrisv2_department.app.Add
-
- 					 	},'-',{
- 					     	xtype: 'tbbutton',
- 					     	text: 'EDIT',
-							icon: '/images/icons/application_edit.png',
- 							cls:'x-btn-text-icon',
-
- 					     	handler: hrisv2_department.app.Edit
-
- 					 	},'-',{
- 					     	xtype: 'tbbutton',
- 					     	text: 'DELETE',
-							icon: '/images/icons/application_delete.png',
- 							cls:'x-btn-text-icon',
-
- 					     	handler: hrisv2_department.app.Delete
-
- 					 	}
- 	    			 ]
- 	    	});
-
+            var grid = new Application.filereferencegrid({
+                id: "subdepartment_grid",
+                url: get_url,
+                fields: fields,
+                columns: columns,
+                addFn: hrisv2_department.app.Add,
+                editFn: hrisv2_department.app.Edit,
+                deleteFn: hrisv2_department.app.Delete
+            });
  			hrisv2_department.app.Grid = grid;
  			hrisv2_department.app.Grid.getStore().load({params:{start: 0, limit: 25}});
 
@@ -145,7 +53,7 @@
  			setForm: function(){
  		    var form = new Ext.form.FormPanel({
  		        labelWidth: 150,
- 		        url:"<?php echo site_url("filereference/addDepartment")?>",
+ 		        url:"<?php echo site_url("filereference/Department/store")?>",
  		        method: 'POST',
  		        defaultType: 'textfield',
  		        frame: true,
@@ -204,7 +112,8 @@
   								     title: 'Status',
  								     msg: action.result.data,
   								     buttons: Ext.Msg.OK,
-  								     icon: 'icon'
+  								     icon: Ext.Msg.INFO,
+                                     width: '100%'
   								 });
  				                ExtCommon.util.refreshGrid(hrisv2_department.app.Grid.getId());
  				                _window.destroy();
@@ -214,6 +123,7 @@
  									title: 'Error Alert',
  									msg: a.result.data,
  									icon: Ext.Msg.ERROR,
+                                    width: '100%',
  									buttons: Ext.Msg.OK
  								});
  			                },
@@ -257,11 +167,17 @@
  		            handler: function () {
  			            if(ExtCommon.util.validateFormFields(hrisv2_department.app.Form)){//check if all forms are filled up
  		                hrisv2_department.app.Form.getForm().submit({
- 			                url: "<?php echo site_url("filereference/updateDepartment")?>",
- 			                params: {id: id},
+ 			                url: "<?php echo site_url("filereference/Department/update")?>",
+ 			                params: {dept_idno: id},
  			                method: 'POST',
  			                success: function(f,action){
-                 		    	Ext.MessageBox.alert('Status', action.result.data);
+                                Ext.Msg.show({
+                                    title: 'Status',
+                                    msg: action.result.data,
+                                    icon: Ext.Msg.INFO,
+                                    width: '100%',
+                                    buttons: Ext.Msg.OK
+                                });
  				                ExtCommon.util.refreshGrid(hrisv2_department.app.Grid.getId());
  				                _window.destroy();
  			                },
@@ -270,7 +186,8 @@
  									title: 'Error Alert',
  									msg: a.result.data,
  									icon: Ext.Msg.ERROR,
- 									buttons: Ext.Msg.OK
+ 									buttons: Ext.Msg.OK,
+                                    width: '100%'
  								});
  			                },
  			                waitMsg: 'Updating Data...'
@@ -288,8 +205,8 @@
  		    });
 
  		  	hrisv2_department.app.Form.getForm().load({
- 				url: "<?php echo site_url("filereference/loadDepartment")?>",
- 				method: 'POST',
+ 				url: "<?php echo site_url("filereference/Department/show")?>",
+ 				method: 'GET',
  				params: {id: id},
  				timeout: 300000,
  				waitMsg:'Loading...',
@@ -309,11 +226,17 @@
  			}else return;
  		},
 		Delete: function(){
-
-
 			if(ExtCommon.util.validateSelectionGrid(hrisv2_department.app.Grid.getId())){//check if user has selected an item in the grid
-			var sm = hrisv2_department.app.Grid.getSelectionModel();
-			var id = sm.getSelected().data.dept_idno;
+			var sm = hrisv2_department.app.Grid.getSelectionModel().getSelections();
+                var objectJson = { data: new Array() };
+
+                for (var key in sm){
+                    var tmpJson = Ext.util.JSON.encode(sm[key].data);
+                    if(tmpJson != null && typeof(tmpJson) != "undefined" && tmpJson != "null"){
+                        objectJson.data.push(sm[key].data.dept_idno);
+                    }
+
+                }
 			Ext.Msg.show({
    			title:'Delete',
   			msg: 'Are you sure you want to delete this record?',
@@ -322,22 +245,15 @@
    			if (btn == 'ok'){
 
    			Ext.Ajax.request({
-                            url: "<?php echo   site_url("filereference/deleteDepartment")?>",
-							params:{ id: id},
+                            url: "<?php echo   site_url("filereference/Department/destroy")?>",
+							params:{ id: Ext.util.JSON.encode(objectJson)},
 							method: "POST",
 							timeout:300000000,
 			                success: function(responseObj){
                 		    	var response = Ext.decode(responseObj.responseText);
 						if(response.success == true)
 						{
-							Ext.Msg.show({
-								title: 'Status',
-								msg: "Record deleted successfully",
-								icon: Ext.Msg.INFO,
-								buttons: Ext.Msg.OK
-							});
 							hrisv2_department.app.Grid.getStore().load({params:{start:0, limit: 25}});
-
 							return;
 
 						}

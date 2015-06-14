@@ -20,9 +20,4 @@ class Subdepartment_m extends Lithefire_m
     public function department(){
         return $this->belongsTo('filereference\department_m', 'department_id', 'dept_idno');
     }
-
-    public function setRules($rules)
-    {
-        $this->rules = $rules;
-    }
 }

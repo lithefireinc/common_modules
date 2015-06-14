@@ -23,9 +23,9 @@
                     url: get_url,
                     fields: fields,
                     columns: columns,
-                    add: subdepartment.app.Add,
-                    edit: subdepartment.app.Edit,
-                    delete: subdepartment.app.Delete
+                    addFn: subdepartment.app.Add,
+                    editFn: subdepartment.app.Edit,
+                    deleteFn: subdepartment.app.Delete
                 });
                 subdepartment.app.Grid = grid;
                 subdepartment.app.Grid.getStore().load({params:{start: 0, limit: 25}});

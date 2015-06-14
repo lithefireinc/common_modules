@@ -24,9 +24,9 @@
                     url: get_url,
                     fields: fields,
                     columns: columns,
-                    add: employee_category.app.Add,
-                    edit: employee_category.app.Edit,
-                    delete: employee_category.app.Delete
+                    addFn: employee_category.app.Add,
+                    editFn: employee_category.app.Edit,
+                    deleteFn: employee_category.app.Delete
                 });
 
                 employee_category.app.Grid = grid;

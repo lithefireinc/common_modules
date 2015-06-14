@@ -2,11 +2,6 @@
 
 class Filereference extends MY_Controller{
 
-    function Filereference(){
-        parent::__construct();
-
-    }
-	
 	function getNextCharId($table, $id_field, $length = 5){
         $pdo = new PDO("mysql:host=localhost;port=3306;dbname=lithefzj_engine", "lithefzj_darryl", "LeyyeL03@!");
         //mysql_query("SELECT LPAD(MAX(SUBSTR($id_field, 2))+1, 5, '0') AS IDCHAR FROM $table");

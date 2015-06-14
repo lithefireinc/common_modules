@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
 use \Illuminate\Validation\Factory as Validator;
 use \Symfony\Component\Translation\Translator;
 
-class subdepartment extends MY_Controller
+class Subdepartment extends MY_Controller
 {
     public function index()
     {
