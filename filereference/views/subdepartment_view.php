@@ -13,145 +13,16 @@
             getGrid: function()
             {
                 ExtCommon.util.renderSearchField('searchby');
-//                var fields = [{ name: 'id'}, { name: 'description'}, {name: 'dept_type'}];
-//                var get_url = "<?php //echo site_url('filereference/Subdepartment/getIndex') ?>//";
-//                var sm1 = new Ext.grid.CheckboxSelectionModel({
-//                    dataIndex: 'id',
-//                    listeners: {
-//                        selectionchange: function (sm){
-//                            var count = sm.getCount();
-//                            if(count == 0){
-//                                grid.editButton.disable();
-//                                grid.deleteButton.disable();
-//                            }else{
-//                                grid.deleteButton.enable();
-//                                grid.editButton.enable();
-//                            }
-//
-//                            if(sm.getCount() > 1) {
-//                                grid.editButton.disable();
-//                            }
-//                        }
-//                    }
-//                });
-//
-//                var column_model = [sm1, {header: "Id", width: 100, sortable: true, dataIndex: 'id'}, {header: "Sub-department", width: 150, sortable: true, dataIndex: 'description'},
-//                    {header: "Department", width: 150, sortable: true, dataIndex: 'dept_type'}];
-//                var title = 'Sub-department';
-//
-//                var Objstore = new Ext.data.Store({
-//                    proxy: new Ext.data.HttpProxy({
-//                        url: get_url,
-//                        method: "GET"
-//                    }),
-//                    reader: new Ext.data.JsonReader({
-//                        root: "data",
-//                        totalProperty: "totalCount",
-//                        fields: fields
-//                    }),
-//                    remoteSort: true,
-//                    baseParams: {start: 0, limit: 25}
-//                });
-//
-//                var colModel = new Ext.grid.ColumnModel(column_model);
-//
-//                var grid = new Ext.grid.GridPanel({
-//                    height: 300,
-//                    width: '100%',
-//                    border: true,
-//                    ds: Objstore,
-//                    cm:  colModel,
-//                    sm: sm1,
-//                    loadMask: true,
-//                    bbar:
-//                        new Ext.PagingToolbar({
-//                            autoShow: true,
-//                            pageSize: 25,
-//                            store: Objstore,
-//                            displayInfo: true,
-//                            displayMsg: 'Displaying Results {0} - {1} of {2}',
-//                            emptyMsg: "No Data Found."
-//                        }),
-//                    tbar: [new Ext.form.ComboBox({
-//                        fieldLabel: 'Search',
-//                        hiddenName:'searchby-form',
-//                        id: 'searchby',
-//                        typeAhead: true,
-//                        triggerAction: 'all',
-//                        emptyText:'Search By...',
-//                        selectOnFocus:true,
-//                        store: new Ext.data.SimpleStore({
-//                            id:0
-//                            ,fields:
-//                                [
-//                                    'myId',   //numeric value is the key
-//                                    'myText' //the text value is the value
-//                                ]
-//
-//
-//                            , data: [['id', 'ID'], ['sd', 'Short Description'], ['ld', 'Long Description']]
-//
-//                        }),
-//                        valueField:'myId',
-//                        displayField:'myText',
-//                        mode:'local',
-//                        width:100,
-//                        hidden: true
-//
-//                    }), {
-//                        xtype:'tbtext',
-//                        text:'Search:'
-//                    },'   ', new Ext.app.SearchField({ store: Objstore, width:250}),
-//                        {
-//                            xtype: 'tbbutton',
-//                            text: 'Clear selections',
-//
-//                            handler: function(){
-//                                subdepartment.app.Grid.getSelectionModel().clearSelections();
-//                            }
-//
-//                        },
-//                        {
-//                            xtype: 'tbfill'
-//                        },{
-//                            xtype: 'tbbutton',
-//                            text: 'ADD',
-//                            icon: '/images/icons/application_add.png',
-//                            cls:'x-btn-text-icon',
-//                            handler: subdepartment.app.Add
-//
-//                        },'-',{
-//                            xtype: 'tbbutton',
-//                            text: 'EDIT',
-//                            icon: '/images/icons/application_edit.png',
-//                            cls:'x-btn-text-icon',
-//                            ref: '../editButton',
-//                            disabled: true,
-//                            handler: subdepartment.app.Edit
-//
-//                        },'-',{
-//                            xtype: 'tbbutton',
-//                            text: 'DELETE',
-//                            icon: '/images/icons/application_delete.png',
-//                            cls:'x-btn-text-icon',
-//                            ref: '../deleteButton',
-//                            disabled: true,
-//                            handler: subdepartment.app.Delete
-//
-//                        }
-//                    ],
-//                    listeners: {
-//                        rowdblclick: function(grid, row, e){
-//                            subdepartment.app.Edit();
-//                        }
-//                    }
-//                });
+                var fields = [{ name: 'id'}, { name: 'description'}, {name: 'dept_type'}];
+                var get_url = "<?php echo site_url('filereference/Subdepartment/getIndex') ?>";
+                var columns = [{header: "Id", width: 100, sortable: true, dataIndex: 'id'}, {header: "Sub-department", width: 150, sortable: true, dataIndex: 'description'},
+                    {header: "Department", width: 150, sortable: true, dataIndex: 'dept_type'}];
+
                 var grid = new Application.filereferencegrid({
                     id: "subdepartment_grid",
-                    url: "<?php echo site_url('filereference/Subdepartment/getIndex') ?>",
-                    fields: [{ name: 'id'}, { name: 'description'}, {name: 'dept_type'}],
-                    columns: [{header: "Id", width: 100, sortable: true, dataIndex: 'id'}, {header: "Sub-department", width: 150, sortable: true, dataIndex: 'description'},
-                {header: "Department", width: 150, sortable: true, dataIndex: 'dept_type'}],
+                    url: get_url,
+                    fields: fields,
+                    columns: columns,
                     add: subdepartment.app.Add,
                     edit: subdepartment.app.Edit,
                     delete: subdepartment.app.Delete
