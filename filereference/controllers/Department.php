@@ -87,7 +87,7 @@ class Department extends MY_Controller
     public function destroy()
     {
         $ids = json_decode($this->input->post('id'), true);
-        
+
         $department = new Department_m;
         $department->whereIn("dept_idno", $ids["data"])->delete();
         die(json_encode(["success"=>true, "data"=>$department->deletedMsg()]));
